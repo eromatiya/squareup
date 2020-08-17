@@ -1,0 +1,6 @@
+/* Load all CSS */
+@import url('global.css');
+@import url('animated-background.css');
+@import url('central-body.css');
+@import url('panel-body.css');
+@import url('panel-button.css');

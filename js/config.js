@@ -4,7 +4,7 @@ class Config {
 		this.getQuickSearchData = this.getQuickSearchData.bind(this);
 		this.getSearchEngines = this.getSearchEngines.bind(this);
 		this.getWebSites = this.getWebSites.bind(this);
-		this.getDockSites = this.getDockSites.bind(this);
+		this.getPanelSites = this.getPanelSites.bind(this);
 	}
 
 	getQuickSearchData() {
@@ -331,10 +331,10 @@ class Config {
 		return webSites;
 	}
 
-	getDockSites() {
-		// Dock
-		// A list of websites that will be generated and put on the dock
-		const dockSites = [
+	getPanelSites() {
+		// Panel
+		// A list of websites that will be generated and put on the Panel
+		const panelSites = [
 			{
 				site: 'Reddit',
 				icon: 'reddit',
@@ -377,6 +377,6 @@ class Config {
 			}
 		];
 
-		return dockSites;
+		return panelSites;
 	}
 }

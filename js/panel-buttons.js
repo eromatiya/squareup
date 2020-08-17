@@ -4,24 +4,22 @@ class PanelButtons {
 		this._panel = document.querySelector('#panel-body');
 		
 		// Retrieve dockSites object from Config instance
-		this._dockSites = config.getDockSites();
-		
-		// Populate dock
+		this._panelSites = config.getPanelSites();
+
+		// Populate
 		this._populatePanel();
 	}
 
 	_buildPanelkButton(id, className, callback = null) {
+		const panelButton = document.createElement('div');
+		panelButton.id = `button${id}`;
+		panelButton.className = className;
+		panelButton.onmouseup = callback;
 
-		const dockButton = document.createElement('div');
-		dockButton.id = `button${id}`;
-		dockButton.className = className;
-		dockButton.onmouseup = callback;
-
-		return dockButton;
+		return panelButton;
 	}
 
 	_buildPanelkButtonImage(id, className, background) {
-
 		const buttonImage = document.createElement('div');
 		buttonImage.id = id;
 		buttonImage.className = className;
@@ -31,20 +29,20 @@ class PanelButtons {
 	}
 	
 	_generateFromList() {
-		for (let i = 0; i < (this._dockSites.length); i++) {
+		for (let i = 0; i < (this._panelSites.length); i++) {
 	
-			const site = this._dockSites[parseInt(i, 10)].site;
-			const icon = this._dockSites[parseInt(i, 10)].icon;
-			const url = this._dockSites[parseInt(i, 10)].url;
+			const site = this._panelSites[parseInt(i, 10)].site;
+			const icon = this._panelSites[parseInt(i, 10)].icon;
+			const url = this._panelSites[parseInt(i, 10)].url;
 	
 			// Create a href
-			const aDock = document.createElement('a');
-			aDock.className = 'panel-link';
-			aDock.href = url;
-			aDock.tabIndex = '-1';
+			const panelLink = document.createElement('a');
+			panelLink.className = 'panel-link';
+			panelLink.href = url;
+			panelLink.tabIndex = '-1';
 	
 			// Create div container
-			const dockButton = this._buildPanelkButton(
+			const panelButton = this._buildPanelkButton(
 				site,
 				'panel-button'
 			);
@@ -57,15 +55,14 @@ class PanelButtons {
 			);
 	
 			// Append divs
-			dockButton.appendChild(buttonImage);
-			aDock.appendChild(dockButton);
-			this._panel.appendChild(aDock);
+			panelButton.appendChild(buttonImage);
+			panelLink.appendChild(panelButton);
+			this._panel.appendChild(panelLink);
 		}
 	}
 
 	_populatePanel() {
-		
+		// Populate
 		this._generateFromList();
-
 	}
 }

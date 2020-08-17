@@ -1,0 +1,18 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+/* Remove outline on input fields on chrome */
+input:focus,
+textarea:focus,
+select:focus {
+	outline: none;
+}
+
+/* Placeholder */
+::placeholder {
+	color: #F2F2F2;
+	opacity: 0.65;
+}
