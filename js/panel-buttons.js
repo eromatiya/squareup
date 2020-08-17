@@ -12,7 +12,7 @@ class PanelButtons {
 
 	_buildPanelButton(id, className, callback = null) {
 		const panelButton = document.createElement('div');
-		panelButton.id = `button${id}`;
+		panelButton.id = `button-${id}`;
 		panelButton.className = className;
 		panelButton.onmouseup = callback;
 
@@ -31,13 +31,13 @@ class PanelButtons {
 	_generateFromManual(id, icon, callback) {
 
 		const panelButton = this._buildPanelButton(
-			`button${id}`,
+			`${id}`,
 			'panel-button',
 			callback
 		);
 
 		const buttonImage = this._buildPanelButtonImage(
-			`buttonImage${id}`,
+			`button-image-${id}`,
 			'panel-button-image',
 			`url('assets/buttons/${icon}.svg')`
 		);
@@ -67,7 +67,7 @@ class PanelButtons {
 	
 			// Create div container for button icon
 			const buttonImage = this._buildPanelButtonImage(
-				`buttonImage${i}`,
+				`button-image-${i}`,
 				'panel-button-image',
 				`url('assets/webcons/${icon}.svg')`
 			);
@@ -85,7 +85,7 @@ class PanelButtons {
 
 		// Create launcher button
 		this._generateFromManual(
-			'SearchEngine',
+			'search-engine',
 			'search-engine', 
 			() => {
 				// Toggle web menu
