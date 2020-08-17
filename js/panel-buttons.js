@@ -3,14 +3,14 @@ class PanelButtons {
 	constructor() {
 		this._panel = document.querySelector('#panel-body');
 		
-		// Retrieve dockSites object from Config instance
+		// Retrieve panelSites object from config instance
 		this._panelSites = config.getPanelSites();
 
 		// Populate
 		this._populatePanel();
 	}
 
-	_buildPanelkButton(id, className, callback = null) {
+	_buildPanelButton(id, className, callback = null) {
 		const panelButton = document.createElement('div');
 		panelButton.id = `button${id}`;
 		panelButton.className = className;
@@ -19,13 +19,31 @@ class PanelButtons {
 		return panelButton;
 	}
 
-	_buildPanelkButtonImage(id, className, background) {
+	_buildPanelButtonImage(id, className, background) {
 		const buttonImage = document.createElement('div');
 		buttonImage.id = id;
 		buttonImage.className = className;
 		buttonImage.style.backgroundImage = background;
 	
 		return buttonImage;
+	}
+
+	_generateFromManual(id, icon, callback) {
+
+		const panelButton = this._buildPanelButton(
+			`button${id}`,
+			'panel-button',
+			callback
+		);
+
+		const buttonImage = this._buildPanelButtonImage(
+			`buttonImage${id}`,
+			'panel-button-image',
+			`url('assets/buttons/${icon}.svg')`
+		);
+			
+		panelButton.appendChild(buttonImage);
+		this._panel.appendChild(panelButton);
 	}
 	
 	_generateFromList() {
@@ -42,13 +60,13 @@ class PanelButtons {
 			panelLink.tabIndex = '-1';
 	
 			// Create div container
-			const panelButton = this._buildPanelkButton(
+			const panelButton = this._buildPanelButton(
 				site,
 				'panel-button'
 			);
 	
 			// Create div container for button icon
-			const buttonImage = this._buildPanelkButtonImage(
+			const buttonImage = this._buildPanelButtonImage(
 				`buttonImage${i}`,
 				'panel-button-image',
 				`url('assets/webcons/${icon}.svg')`
@@ -64,5 +82,15 @@ class PanelButtons {
 	_populatePanel() {
 		// Populate
 		this._generateFromList();
+
+		// Create launcher button
+		this._generateFromManual(
+			'SearchEngine',
+			'search-engine', 
+			() => {
+				// Toggle web menu
+				console.log('Switch search engine');
+			}
+		);
 	}
 }

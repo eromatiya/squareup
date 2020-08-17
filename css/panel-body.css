@@ -7,7 +7,7 @@
 	bottom: 10px;
 	left: 50%;
 	transform: translateX(-50%);
-	background: #FFFFFF;
+	background: var(--base-bg);
 	display: inline-flex;
 	border-radius: 12px;
 	box-shadow:

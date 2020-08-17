@@ -9,7 +9,7 @@
 	font-family: 'Inter', 'SF Pro Text', sans-serif;
 	font-weight: bold;
 	font-size: 96px;
-	color: #FFFFFF;
+	color: var(--clock-color);
 	text-align: center;
 	margin-bottom: 40px;
 	text-shadow: 2px 2px #0A0A0A22;
@@ -21,7 +21,7 @@
 #search-box {
 	font-family: 'Inter', 'SF Pro Text', sans-serif;
 	background: #F2F2F2;
-	color: #0A0A0A;
+	color: var(--font-color);
 	font-size: 16pt;
 	text-align: center;
 	position: relative; 

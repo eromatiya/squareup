@@ -41,23 +41,33 @@ class Config {
 		const searchEngines = {
 			'google': {
 				name: 'Google',
-				prefix: 'https://www.google.com/search?q='
+				prefix: 'https://www.google.com/search?q=',
+				icon: 'google'
 			},
 			'duckduckgo': {
 				name: 'Duckduckgo',
-				prefix: 'https://duckduckgo.com/?q='
+				prefix: 'https://duckduckgo.com/?q=',
+				icon: 'duckduckgo'
 			},
 			'ecosia': {
 				name: 'Ecosia',
-				prefix: 'https://www.ecosia.org/search?q='
+				prefix: 'https://www.ecosia.org/search?q=',
+				icon: 'ecosia'
 			},
 			'yahoo': {
 				name: 'Yahoo',
-				prefix: 'https://search.yahoo.com/search?p='
+				prefix: 'https://search.yahoo.com/search?p=',
+				icon: 'yahoo'
 			},
 			'bing': {
 				name: 'Bing',
-				prefix: 'https://www.bing.com/search?q='
+				prefix: 'https://www.bing.com/search?q=',
+				icon: 'bing'
+			},
+			'qwant': {
+				name: 'Qwant',
+				prefix: 'https://www.qwant.com/?q=',
+				icon: 'bing'
 			}
 		};
 
