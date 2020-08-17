@@ -13,6 +13,6 @@ select:focus {
 
 /* Placeholder */
 ::placeholder {
-	color: #F2F2F2;
+	color: #0A0A0A;
 	opacity: 0.65;
 }
