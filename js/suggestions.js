@@ -1,5 +1,4 @@
 class AutoSuggestion {
-	
 	constructor() {
 		this._searchBox = document.querySelector('#search-box');
 		this._suggestionsUL = document.querySelector('#suggestions');
@@ -21,51 +20,54 @@ class AutoSuggestion {
 	}
 
 	// Create input events
-	_phraseEvents(button) {
+	_createButtonEvents(button) {
 
 		// Update searchbox on enter key and mouse click
-		button.onkeyup = e => {
+		button.addEventListener(
+			'keyup',
+			e => {
+				if (e.key === 'Enter') {
 
-			if (e.key === 'Enter') {
+					this._searchBox.value = button.innerText;
+					this._searchBox.focus();
 
+				} else if (e.key === 'Backspace') {
+
+					this._searchBox.focus();
+
+				} else if ((e.key === 'ArrowDown') || e.key === 'ArrowRight') {
+
+					e.preventDefault();
+
+					const suggestionButtons = Array.prototype.slice.call(document.querySelectorAll('button'));
+					const suggestionIndex = (suggestionButtons.indexOf(document.activeElement) + 1) % suggestionButtons.length;
+					const suggestionButton = suggestionButtons[parseInt(suggestionIndex, 10)];
+					suggestionButton.focus();
+
+				} else if ((e.key === 'ArrowUp') || e.key === 'ArrowLeft') {
+
+					e.preventDefault();
+
+					const suggestionButtons = Array.prototype.slice.call(document.querySelectorAll('button'));
+					let suggestionIndex = (suggestionButtons.indexOf(document.activeElement) - 1) % suggestionButtons.length;
+
+					if (suggestionIndex < 0) { 
+						suggestionIndex = suggestionButtons.length - 1;
+					}
+
+					const suggestionButton = suggestionButtons[parseInt(suggestionIndex, 10)];
+					suggestionButton.focus();
+				}
+			}
+		);
+
+		button.addEventListener(
+			'mouseup',
+			e => {
 				this._searchBox.value = button.innerText;
 				this._searchBox.focus();
-
-			} else if (e.key === 'Backspace') {
-
-				this._searchBox.focus();
-
-			} else if ((e.key === 'ArrowDown') || e.key === 'ArrowRight') {
-
-				e.preventDefault();
-
-				const phraseButtons = Array.prototype.slice.call(document.querySelectorAll('button'));
-				const phraseIndex = (phraseButtons.indexOf(document.activeElement) + 1) % phraseButtons.length;
-				const phraseButton = phraseButtons[parseInt(phraseIndex, 10)];
-				phraseButton.focus();
-
-			} else if ((e.key === 'ArrowUp') || e.key === 'ArrowLeft') {
-
-				e.preventDefault();
-
-				const phraseButtons = Array.prototype.slice.call(document.querySelectorAll('button'));
-				let phraseIndex = (phraseButtons.indexOf(document.activeElement) - 1) % phraseButtons.length;
-
-				if (phraseIndex < 0) { 
-					phraseIndex = phraseButtons.length - 1;
-				}
-
-				const phraseButton = phraseButtons[parseInt(phraseIndex, 10)];
-				phraseButton.focus();
 			}
-
-		};
-
-		// Onmouseup event
-		button.onmouseup = e => {
-			this._searchBox.value = button.innerText;
-			this._searchBox.focus();
-		};
+		);
 	}
 
 	// Generate and parse suggestions
@@ -76,13 +78,13 @@ class AutoSuggestion {
 						.filter(s => !(s.toLowerCase() === String(this._searchBox.value).toLowerCase()))
 						.slice(0, 4);
 
-		// Empty ul on every callback to refresh list
-		this._suggestionsUL.innerHTML = '';
+		// Empty UL on every callback to refresh list
+		this._suggestionsUL.querySelectorAll('*').forEach(child => child.remove());
 
 		// Generate list elements
 		for (let phrases of suggestion) {
 
-			// Create html elements
+			// Create HTML elements
 			const li = document.createElement('li');
 			li.className = 'suggestion';
 
@@ -92,7 +94,7 @@ class AutoSuggestion {
 			button.innerText = phrases;
 
 			// Create input events
-			this._phraseEvents(button);
+			this._createButtonEvents(button);
 
 			// Appent to ul
 			li.appendChild(button);
@@ -104,7 +106,6 @@ class AutoSuggestion {
 	}
 
 	fetchSuggestions() {
-
 		const endpoint = 'https://duckduckgo.com/ac/';
 		const callback = 'autocompleteCallback';
 		const searchQuery = String(this._searchBox.value);
@@ -119,5 +120,4 @@ class AutoSuggestion {
 		script.src = `${endpoint}?callback=${callback}&q=${searchQuery}`;
 		document.querySelector('head').appendChild(script);
 	}
-
 }
