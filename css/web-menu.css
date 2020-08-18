@@ -59,6 +59,7 @@
 
 #web-menu-searchbox::placeholder {
 	font-family: 'Inter', fantasque-sans-mono, 'Roboto', sans-serif;
+	font-size: 11pt;
 	font-weight: 700;
 }
 
@@ -143,7 +144,7 @@
 .web-item-name {
 	text-align: center;
 	font-size: 11pt;
-	font-family: 'Inter', roboto, sans-serif;
+	font-family: 'Inter', 'Roboto', sans-serif;
 	font-weight: 400;
 	word-wrap: break-word;
 	color: var(--font-color);

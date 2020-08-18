@@ -27,3 +27,6 @@ const searchEngineSettings = new SearchEngineSettings();
 
 // Instantiate theme switcher
 const themeSwitcher = new ThemeSwitcher();
+
+// Instantiate key events
+const documentKeyEvents = new DocumentKeyEvents();

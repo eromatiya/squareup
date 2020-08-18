@@ -64,7 +64,7 @@ class WebMenu {
 		this._webMenuVisibility = !this._webMenuVisibility;
 	}
 
-	_toggleWebMenu() {
+	toggleWebMenu() {
 		if (this._webMenuVisibility) {
 			this._hideWebMenu();
 
@@ -354,11 +354,11 @@ class WebMenu {
 					this._webItemFocus.callback();
 
 					// Hide web menu
-					this._toggleWebMenu();
+					this.toggleWebMenu();
 
 				} else if (e.key === 'Backspace' && this._webMenuSearchBox.value.length  < 1) {
 					// Hide web menu if backspace is pressed and searchbox value is 0
-					this._toggleWebMenu();
+					this.toggleWebMenu();
 					return;
 
 				} else if ((e.key === 'Escape') || (e.key === 'Alt')) {
@@ -376,7 +376,7 @@ class WebMenu {
 		this._webMenuButton.addEventListener(
 			'click',
 			() => {
-				this._toggleWebMenu();
+				this.toggleWebMenu();
 			}
 		);
 	}
