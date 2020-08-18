@@ -9,7 +9,7 @@
 	overflow: hidden;
 	user-select: none;
 	box-sizing: border-box;
-	z-index: 0;
+	z-index: -1;
 	padding: 40px 12vw 6vh 12vw;
 	opacity: 0;
 	transition:
@@ -144,7 +144,7 @@
 .web-item-name {
 	text-align: center;
 	font-size: 11pt;
-	font-family: 'Inter', 'Roboto', sans-serif;
+	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
 	font-weight: 400;
 	word-wrap: break-word;
 	color: var(--font-color);
