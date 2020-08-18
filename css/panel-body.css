@@ -29,10 +29,7 @@
 				0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
-
-/* Translate dock to left side if width <= 470 and height >= 540 */
-@media screen and (max-width: 470px) and (min-height: 490px) {
-
+@media screen and (max-width: 505px) and (min-height: 465px) {
 	#panel-container {
 		display: inline-block;
 		position: absolute;
@@ -51,6 +48,75 @@
 		height: auto;
 		bottom: unset;
 		transform: scale(0.9);
+		transition: transform var(--transition-speed);
+	}
+}
+
+@media screen and (max-width: 505px) and (max-height: 464px) {
+	#panel-container {
+		display: inline-block;
+		position: absolute;
+		width: auto;
+		height: auto;
+		top: 50%;
+		bottom: unset;
+		left: 10px;
+		transform: translateY(-50%);
+	}
+
+	#panel-body {
+		display: inline-block;
+		position: relative;
+		width: auto;
+		height: auto;
+		bottom: unset;
+		transform: scale(0.85);
+		transition: transform var(--transition-speed);
+	}
+}
+
+@media screen and (max-width: 505px) and (max-height: 440px) {
+	#panel-container {
+		display: inline-block;
+		position: absolute;
+		width: auto;
+		height: auto;
+		top: 50%;
+		bottom: unset;
+		left: 10px;
+		transform: translateY(-50%);
+	}
+
+	#panel-body {
+		display: inline-block;
+		position: relative;
+		width: auto;
+		height: auto;
+		bottom: unset;
+		transform: scale(0.8);
+		transition: transform var(--transition-speed);
+	}
+}
+
+@media screen and (max-width: 505px) and (max-height: 410px) {
+	#panel-container {
+		display: inline-block;
+		position: absolute;1
+		width: auto;
+		height: auto;
+		top: 50%;
+		bottom: unset;
+		left: 10px;
+		transform: translateY(-50%);
+	}
+
+	#panel-body {
+		display: inline-block;
+		position: relative;
+		width: auto;
+		height: auto;
+		bottom: unset;
+		transform: scale(0.7);
 		transition: transform var(--transition-speed);
 	}
 }
