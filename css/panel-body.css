@@ -15,8 +15,6 @@
 	box-sizing: border-box;
 	padding: 5px;
 	position: relative;
-	
-	
 	background: var(--base-bg);
 	display: inline-flex;
 	border-radius: 12px;
@@ -117,6 +115,29 @@
 		height: auto;
 		bottom: unset;
 		transform: scale(0.7);
+		transition: transform var(--transition-speed);
+	}
+}
+
+@media screen and (max-height: 355px) {
+	#panel-container {
+		display: inline-block;
+		position: absolute;1
+		width: auto;
+		height: auto;
+		top: 50%;
+		bottom: unset;
+		left: 10px;
+		transform: translateY(-50%);
+	}
+
+	#panel-body {
+		display: inline-block;
+		position: relative;
+		width: auto;
+		height: auto;
+		bottom: unset;
+		transform: scale(0);
 		transition: transform var(--transition-speed);
 	}
 }

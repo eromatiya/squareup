@@ -8,13 +8,14 @@
 #clock {
 	font-family: 'Inter', 'SF Pro Text', sans-serif;
 	font-weight: bold;
-	font-size: 96px;
+	font-size: 72pt;
 	color: var(--clock-color);
 	text-align: center;
 	margin-bottom: 40px;
 	text-shadow: 2px 2px #0A0A0A22;
 	user-select: none;
 	-webkit-user-drag: none;
+	transition: font-size var(--transition-speed);
 }
 
 
@@ -37,4 +38,41 @@
 				0 22.3px 17.9px rgba(0, 0, 0, 0.072),
 				0 41.8px 33.4px rgba(0, 0, 0, 0.086),
 				0 100px 80px rgba(0, 0, 0, 0.12);
+	max-width: 100%;
+	transition:
+				max-width var(--transition-speed),
+				font-size var(--transition-speed);
+}
+
+@media screen and (max-width: 500px) {
+	#search-box {
+		max-width: 70%;
+		font-size: 14pt;
+	}
+
+	#clock {
+		font-size: 64pt;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	#search-box {
+		max-width: 60%;
+		font-size: 12pt;
+	}
+
+	#clock {
+		font-size: 32pt;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	#search-box {
+		max-width: 50%;
+		font-size: 11pt;
+	}
+
+	#clock {
+		font-size: 24pt;
+	}
 }
