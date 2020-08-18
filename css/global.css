@@ -9,7 +9,7 @@
 	--gradient-end-bg: #b06ab3;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
 	--base-bg: #1A1A1A;
 	--boxes-bg: var(--base-bg);
 	--font-color: #F2F2F2;
