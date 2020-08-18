@@ -1,12 +1,22 @@
+#panel-container {
+	background: transparent;
+	position: absolute;
+	z-index: 5;
+	margin: 0 auto;
+	bottom: 0;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
 #panel-body {
 	width: auto;
 	height: auto;
 	box-sizing: border-box;
 	padding: 5px;
-	position: absolute;
-	bottom: 10px;
-	left: 50%;
-	transform: translateX(-50%);
+	position: relative;
+	
+	
 	background: var(--base-bg);
 	display: inline-flex;
 	border-radius: 12px;
@@ -17,4 +27,30 @@
 				0 22.3px 17.9px rgba(0, 0, 0, 0.072),
 				0 41.8px 33.4px rgba(0, 0, 0, 0.086),
 				0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Translate dock to left side if width <= 470 and height >= 540 */
+@media screen and (max-width: 470px) and (min-height: 490px) {
+
+	#panel-container {
+		display: inline-block;
+		position: absolute;
+		width: auto;
+		height: auto;
+		top: 50%;
+		bottom: unset;
+		left: 10px;
+		transform: translateY(-50%);
+	}
+
+	#panel-body {
+		display: inline-block;
+		position: relative;
+		width: auto;
+		height: auto;
+		bottom: unset;
+		transform: scale(0.9);
+		transition: transform var(--transition-speed);
+	}
 }

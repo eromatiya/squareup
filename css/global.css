@@ -7,6 +7,7 @@
 	--button-active: #E1E1E1;
 	--gradient-start-bg: #4568dc;
 	--gradient-end-bg: #b06ab3;
+	--transition-speed: 300ms;
 }
 
 [data-theme='dark'] {
