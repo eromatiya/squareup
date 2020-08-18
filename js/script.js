@@ -4,22 +4,26 @@ const config = new Config();
 // Instantiate a clock object
 const clock = new Clock();
 
-// Instantiate dock buttons
+// Instantiate panel buttons
 const panelButtons = new PanelButtons();
+
+// Instantiate central body
+const centralBody = new CentralBody();
 
 // Instantiate search box key events
 const searchBoxKeyEvents = new SearchBoxKeyEvents();
 
-// Instantiate search engine settings
-const searchEngineSettings = new SearchEngineSettings();
-
 // Instantiate search query send
 const searchQuerySend = new SearchQuerySend();
-
-// Instantiate theme switcher
-const themeSwitcher = new ThemeSwitcher();
 
 // Instantiate autosuggestion
 const autoSuggestion = new AutoSuggestion();
 
+// Instantantiate web menu
 const webMenu = new WebMenu();
+
+// Instantiate search engine settings
+const searchEngineSettings = new SearchEngineSettings();
+
+// Instantiate theme switcher
+const themeSwitcher = new ThemeSwitcher();

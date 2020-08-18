@@ -79,15 +79,14 @@ class PanelButtons {
 	}
 
 	_populatePanel() {
-		
 		// Create theme switcher
 		this._generateFromManual(
 			'web-menu',
 			'web-menu',
 			() => {
-				// This is dummy on click event
+				// This is a dummy on click event
 				// Look web-menu.js
-				console.log('Launch web menu');
+				console.log('Toggle web menu');
 			}
 		);
 
@@ -99,7 +98,7 @@ class PanelButtons {
 			'search-engine',
 			'search-engine', 
 			() => {
-				// This is dummy on click event
+				// This is a dummy on click event
 				// Look search-engine-settings.js
 				console.log('Switch search engine');
 			}
@@ -110,7 +109,7 @@ class PanelButtons {
 			'theme-switch',
 			'theme-switch',
 			() => {
-				// This is dummy on click event
+				// This is a dummy on click event
 				// Look theme-switcher.js
 				console.log('Switch theme');
 			}
