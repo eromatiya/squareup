@@ -10,3 +10,5 @@ const panelButtons = new PanelButtons();
 const searchBoxKeyEvents = new SearchBoxKeyEvents();
 
 const searchEngineSettings = new SearchEngineSettings();
+
+const searchQuerySend = new SearchQuerySend();

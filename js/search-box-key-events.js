@@ -1,10 +1,6 @@
 class SearchBoxKeyEvents {
 	constructor() {
 		this._searchBox = document.querySelector('#search-box');
-
-		// this._searchQuerySend = searchQuerySend;
-		// this.sendQuery = this._searchQuerySend.sendQuery;
-
 		this._registerSearchBoxOnKeyUpEvent();
 	}
 
@@ -42,8 +38,7 @@ class SearchBoxKeyEvents {
 			}
 
 			// Search the web
-			// this.sendQuery();
-			console.log(this._searchBox.value);
+			searchQuerySend.sendQuery();
 		}
 	}
 
