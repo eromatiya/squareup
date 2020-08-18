@@ -32,11 +32,15 @@ class SearchEngineSettings {
 		let searchEngineObject = this._searchEngines[String(this._activeSearchEngine)];
 
 		this._activeSearchEnginePrefix = searchEngineObject.prefix;
+		let searchEngineName = searchEngineObject.name;
 		let searchEngineIcon = searchEngineObject.icon;
 
 		// Update search engine icon
 		this._buttonImageSearchEngine.style.backgroundImage = `url('assets/search-engines/${searchEngineIcon}.svg')`
 		this._buttonImageSearchEngine.style.backgroundSize = 'cover';
+
+		// Update search box placeholder
+		this._searchBox.placeholder = `Search with ${searchEngineName}`;
 	}
 
 	_incrementSearchEngineIndex() {
@@ -65,7 +69,8 @@ class SearchEngineSettings {
 		this._createSearchEngineList();
 
 		// Load search engine
-		this._activeSearchEngine = this._localStorage.getItem('searchEngine') || 'duckduckgo';
+		this._activeSearchEngine = this._localStorage.getItem('searchEngine') ||
+		this._searchEnginesArr[0];
 
 		// Get index of default/saved search engine
 		this._searchEnginesIndex = this._searchEnginesArr.indexOf(this._activeSearchEngine);
