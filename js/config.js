@@ -67,7 +67,7 @@ class Config {
 			'qwant': {
 				name: 'Qwant',
 				prefix: 'https://www.qwant.com/?q=',
-				icon: 'bing'
+				icon: 'qwant'
 			}
 		};
 

@@ -14,7 +14,7 @@ class PanelButtons {
 		const panelButton = document.createElement('div');
 		panelButton.id = `button-${id}`;
 		panelButton.className = className;
-		panelButton.onmouseup = callback;
+		panelButton.addEventListener('click', () => {callback();});
 
 		return panelButton;
 	}
@@ -88,7 +88,8 @@ class PanelButtons {
 			'search-engine',
 			'search-engine', 
 			() => {
-				// Toggle web menu
+				// This is dummy on click event
+				// Look search-engine-settings.js
 				console.log('Switch search engine');
 			}
 		);

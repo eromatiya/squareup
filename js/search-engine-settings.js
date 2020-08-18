@@ -8,6 +8,8 @@ class SearchEngineSettings {
 		this._searchEngines = config.getSearchEngines();
 		this._searchEnginesArr = [];
 		this._searchEnginesIndex = 0;
+		this._activeSearchEngine = '';
+		this._activeSearchEnginePrefix = '';
 
 		this._init()
 	}
@@ -21,27 +23,57 @@ class SearchEngineSettings {
 		this._buttonSearchEngineClickEvent();
 	}
 
-	_init() {
-		this._createSearchEngineList();
+	getSearchEngineURLPrefix() {
+		return this._activeSearchEnginePrefix;
+	}
+
+	_updateSearchEngine() {
+		this._activeSearchEngine = this._searchEnginesArr[String(this._searchEnginesIndex)];
+		let searchEngineObject = this._searchEngines[String(this._activeSearchEngine)];
+
+		this._activeSearchEnginePrefix = searchEngineObject.prefix;
+		let searchEngineIcon = searchEngineObject.icon;
+
+		// Update search engine icon
+		this._buttonImageSearchEngine.style.backgroundImage = `url('assets/search-engines/${searchEngineIcon}.svg')`
+		this._buttonImageSearchEngine.style.backgroundSize = 'cover';
+	}
+
+	_incrementSearchEngineIndex() {
+		// Increment index while preventing the it to go off limits
+		this._searchEnginesIndex = (this._searchEnginesIndex + 1) % this._searchEnginesArr.length;
 	}
 
 	_buttonSearchEngineClickEvent() {
 		this._buttonSearchEngine.addEventListener(
 			'click',
 			() => {
-				let activeSearchEngine = this._searchEnginesArr[String(this._searchEnginesIndex)];
-				let searchEngineObject = this._searchEngines[String(activeSearchEngine)];
+				// Update
+				this._updateSearchEngine();
+				
+				// Save search engine
+				this._localStorage.setItem('searchEngine', this._activeSearchEngine);
 
-				let sePrefix = searchEngineObject.prefix;
-				let seIcon = searchEngineObject.icon;
-
-				// Create dummy image
-				this._buttonImageSearchEngine.style.backgroundImage = `url('assets/search-engines/${seIcon}.svg')`
-				this._buttonImageSearchEngine.style.backgroundSize = 'cover';
-
-				// Increment while preventing the index to go off limits
-				this._searchEnginesIndex = (this._searchEnginesIndex + 1) % this._searchEnginesArr.length;
+				// Increment index
+				this._incrementSearchEngineIndex();
 			}
 		)
+	}
+
+	_init() {
+		// Create an array of search engine
+		this._createSearchEngineList();
+
+		// Load search engine
+		this._activeSearchEngine = this._localStorage.getItem('searchEngine') || 'duckduckgo';
+
+		// Get index of default/saved search engine
+		this._searchEnginesIndex = this._searchEnginesArr.indexOf(this._activeSearchEngine);
+
+		// Update
+		this._updateSearchEngine();
+
+		// Increment index
+		this._incrementSearchEngineIndex();
 	}
 }
