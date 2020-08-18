@@ -1,3 +1,95 @@
 ## Polyfloat
 
 A sleek and modern startpage
+
+## Features
+
++ Responsive UI
++ Web Search Suggestions
++ Mobile Support
++ Theme Switcher
++ Search Engine Selection
++ Animated Background
++ Web Menu with Fuzzy Search
++ Vanilla Javascript!
++ And many bugs!
+
+## Quick search
+
++ `r/` + `subreddit name` will open the subreddit.
++ `w/` + `search query` to search in wikipedia.
++ `u/` + `search query` to search for an image/photo in unsplash.
++ `a/` + `search query` to search a product in amazon.
++ `e/` + `search query` to search a product in ebay.
++ `y/` + `search query` to search a video in youtube.
++ `n/` + `comic id` to search a "comic" in a certain "comic" website.
+
+## Settings and Customization
+
++ Dark - Dark colorscheme. Good for the night.
++ Light - Bright colorscheme. Good for killing the eyes.
++ Auto - Load a colorscheme based on time. Edit light/dark mode hours on `js/config.js` 
+
+
+#### Customizing panel buttons
+
+To add more web shortcuts/buttons on the dock, you have to edit the `panelSites` array in `js/config.js`. Make sure to put an icon with `svg` format for the shortcut in `assets/webcons/` folder.
+
+```js
+// Example
+const panelSites = [
+	{
+		site: 'Reddit',
+		icon: 'reddit',
+		url: 'https://reddit.com/'
+	},
+	...
+]
+```
+
+#### Customizing quick search
+
+Add more quick search shortcuts by editing the `quickSearchData` object in `js/config.js`. Make sure to follow the format below:
+
+```js
+// Example
+const quickSearchData = {
+	'r/': {
+		urlPrefix: 'https://reddit.com/r/'
+	},
+	...
+```
+
+#### Switch default search engine
+
+Google is the default search engine, if you want to change it to DuckDuckGo or something, just click the switcher button on the panel.
+
+Available search engines:
+
++ Google
++ Duckduckgo
++ Ecosia
++ Yahoo
++ Bing
++ Qwant
+
+#### Customizing available search engines
+
+Add more search engine by editing the `searchEngines` object in `js/config.js`. Make sure to follow the format below:
+
+```js
+// Example
+const searchEngines = {
+	'duckduckgo': {
+		name: 'Duckduckgo',
+		prefix: 'https://duckduckgo.com/?q='
+	},
+	...
+}
+```
+
+### Important Note
+
++ Make sure that javascript is enabled!
++ If you're using `NoScript` and `Dark Mode Reader` extensions make sure to whitelist the startpage.
++ Tested only on Firefox and Google Chrome.
