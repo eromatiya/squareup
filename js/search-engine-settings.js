@@ -20,7 +20,6 @@ class SearchEngineSettings {
 				this._searchEnginesArr.push(key);
 			}
 		);
-		this._buttonSearchEngineClickEvent();
 	}
 
 	getSearchEngineURLPrefix() {
@@ -44,7 +43,7 @@ class SearchEngineSettings {
 	}
 
 	_incrementSearchEngineIndex() {
-		// Increment index while preventing the it to go off limits
+		// Increment index while preventing it to go off limits
 		this._searchEnginesIndex = (this._searchEnginesIndex + 1) % this._searchEnginesArr.length;
 	}
 
@@ -80,5 +79,8 @@ class SearchEngineSettings {
 
 		// Increment index
 		this._incrementSearchEngineIndex();
+
+		// Register on click events
+		this._buttonSearchEngineClickEvent();
 	}
 }

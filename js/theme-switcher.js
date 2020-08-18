@@ -22,6 +22,7 @@ class ThemeSwitcher {
 	}
 
 	_incrementThemeModeIndex() {
+		// Increment index while preventing it to go off limits
 		this._themeModesArrIndex = (this._themeModesArrIndex + 1) % this._themeModesArr.length;
 	}
 

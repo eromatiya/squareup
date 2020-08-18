@@ -1,11 +1,6 @@
 class Config {
 
-	constructor() {
-		this.getQuickSearchData = this.getQuickSearchData.bind(this);
-		this.getSearchEngines = this.getSearchEngines.bind(this);
-		this.getWebSites = this.getWebSites.bind(this);
-		this.getPanelSites = this.getPanelSites.bind(this);
-	}
+	constructor() {}
 
 	getQuickSearchData() {
 		const quickSearchData = {
