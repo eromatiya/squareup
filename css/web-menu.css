@@ -158,3 +158,38 @@
 	outline-style: none;
 	user-select: none;
 }
+
+@media screen and (max-width: 470px) {
+	#web-menu {
+		padding: 6vh 18vw 0 18vw;
+	}
+
+	#web-menu-list {
+		flex-grow: 1;
+	}
+
+	#web-menu-list li {
+		display: inline;
+	}
+
+	.web-item {
+		width: auto;
+	}
+
+	.web-item:hover {
+		transform: scale(1);
+	}
+
+	.web-item-focus {
+		transform: scale(1);
+	}
+
+	#web-menu-list-container {
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+
+	#web-menu-list-container::-webkit-scrollbar {
+		display: none;
+	}
+}
