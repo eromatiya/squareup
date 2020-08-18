@@ -58,7 +58,7 @@
 }
 
 #web-menu-searchbox::placeholder {
-	font-family: 'Inter', fantasque-sans-mono, 'Roboto', sans-serif;
+	font-family: 'Inter', 'Roboto', sans-serif;
 	font-size: 11pt;
 	font-weight: 700;
 }
