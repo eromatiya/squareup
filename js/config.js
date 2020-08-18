@@ -34,7 +34,27 @@ class Config {
 
 		return quickSearchData;
 	}
-	
+
+	getThemeMode() {
+		const themeModes = {
+			'light': {
+				name: 'Light',
+				icon: 'light-mode'
+			},
+			'dark': {
+				name: 'Dark',
+				icon: 'dark-mode'
+			},
+			'auto': {
+				name: 'Auto',
+				icon: 'auto-mode',
+				lightHour: '7',
+				darkHour: '18'
+			}
+		}
+
+		return themeModes;
+	}
 
 	getSearchEngines() {
 

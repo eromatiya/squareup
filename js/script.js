@@ -12,3 +12,5 @@ const searchBoxKeyEvents = new SearchBoxKeyEvents();
 const searchEngineSettings = new SearchEngineSettings();
 
 const searchQuerySend = new SearchQuerySend();
+
+const themeSwitcher = new ThemeSwitcher();

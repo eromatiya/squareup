@@ -70,7 +70,7 @@ class SearchEngineSettings {
 
 		// Load search engine
 		this._activeSearchEngine = this._localStorage.getItem('searchEngine') ||
-		this._searchEnginesArr[0];
+		this._searchEnginesArr[parseInt(0, 10)];
 
 		// Get index of default/saved search engine
 		this._searchEnginesIndex = this._searchEnginesArr.indexOf(this._activeSearchEngine);

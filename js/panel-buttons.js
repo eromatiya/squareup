@@ -83,7 +83,7 @@ class PanelButtons {
 		// Populate
 		this._generateFromList();
 
-		// Create launcher button
+		// Create search engine switcher button
 		this._generateFromManual(
 			'search-engine',
 			'search-engine', 
@@ -91,6 +91,17 @@ class PanelButtons {
 				// This is dummy on click event
 				// Look search-engine-settings.js
 				console.log('Switch search engine');
+			}
+		);
+
+		// Create theme switcher
+		this._generateFromManual(
+			'theme-switch',
+			'theme-switch',
+			() => {
+				// This is dummy on click event
+				// Look theme-switcher.js
+				console.log('Switch theme');
 			}
 		);
 	}
