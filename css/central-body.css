@@ -72,11 +72,10 @@
 
 @media screen and (max-width: 360px) {
 	#search-box {
-		max-width: 50%;
 		font-size: 11pt;
 	}
 
 	#clock {
-		font-size: 24pt;
+		font-size: 30pt;
 	}
 }

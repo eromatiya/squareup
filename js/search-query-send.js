@@ -1,5 +1,4 @@
 class SearchQuerySend {
-
 	constructor() {
 		this._searchBox = document.querySelector('#search-box');
 		this._quickSearchData = config.getQuickSearchData();

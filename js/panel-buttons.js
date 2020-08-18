@@ -1,5 +1,4 @@
-class PanelButtons {
-	
+class PanelButtons {	
 	constructor() {
 		this._panel = document.querySelector('#panel-body');
 		

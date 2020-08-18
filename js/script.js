@@ -19,4 +19,5 @@ const searchQuerySend = new SearchQuerySend();
 // Instantiate theme switcher
 const themeSwitcher = new ThemeSwitcher();
 
+// Instantiate autosuggestion
 const autoSuggestion = new AutoSuggestion();

@@ -1,5 +1,4 @@
 class Config {
-
 	constructor() {}
 
 	getQuickSearchData() {

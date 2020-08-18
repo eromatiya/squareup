@@ -1,2 +1,3 @@
-# yafs-startpage
-Yet another flat startpage
+## Polyfloat
+
+A sleek and modern startpage

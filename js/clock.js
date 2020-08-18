@@ -1,5 +1,4 @@
 class Clock {
-
 	constructor() {
 		this._clockEl = document.querySelector('#clock');
 		this._setTime = this._setTime.bind(this);

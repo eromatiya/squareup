@@ -62,7 +62,7 @@ class AutoSuggestion {
 		);
 
 		button.addEventListener(
-			'mouseup',
+			'click',
 			e => {
 				this._searchBox.value = button.innerText;
 				this._searchBox.focus();
