@@ -1,6 +1,7 @@
 class Clock {
 	constructor() {
 		this._clock = document.querySelector('#clock');
+		this._setTime = this._setTime.bind(this);
 		this._startClock();
 	}
 
@@ -22,7 +23,7 @@ class Clock {
 		hour = this._appendZero(hour);
 		min = this._appendZero(min);
 
-		this._clock.innerText = `${hour}:${min} ${midDay}` ;
+		this._clock.innerText = `${hour}:${min} ${midDay}`;
 	}
 
 	_startClock() {
