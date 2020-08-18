@@ -73,7 +73,7 @@ class AutoSuggestion {
 	// Generate and parse suggestions
 	_autocompleteCallback(phrase) {
 
-		// Filter/parse the objectgerome matil
+		// Filter/parse the object
 		const suggestion = phrase.map(i => i.phrase)
 						.filter(s => !(s.toLowerCase() === String(this._searchBox.value).toLowerCase()))
 						.slice(0, 4);
