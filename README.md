@@ -26,10 +26,13 @@ A sleek and modern startpage
 
 ## Settings and Customization
 
+### Customizing color scheme
+
+Change the color scheme by just clicking a button!
+
 + Dark - Dark colorscheme. Good for the night.
 + Light - Bright colorscheme. Good for killing the eyes.
 + Auto - Load a colorscheme based on time. Edit light/dark mode hours on `js/config.js` 
-
 
 #### Customizing panel buttons
 
@@ -42,6 +45,23 @@ const panelSites = [
 		site: 'Reddit',
 		icon: 'reddit',
 		url: 'https://reddit.com/'
+	},
+	...
+]
+```
+
+#### Customizing web menu
+
+Add more items or web shortcuts in the web menu by editing the `webSites` array in `js/config.js`. Make sure to put an icon with `svg` format for the shortcut in `assets/webcons/` folder. 
+
+```js
+// Example
+const webSites = [
+	{
+		site: 'Reddit',
+		icon: 'reddit',
+		url: 'https://reddit.com/',
+		category: 'social'
 	},
 	...
 ]
@@ -91,5 +111,5 @@ const searchEngines = {
 ### Important Note
 
 + Make sure that javascript is enabled!
-+ If you're using `NoScript` and `Dark Mode Reader` extensions make sure to whitelist the startpage.
++ Make sure to whitelist the startpage in `NoScript` and `Dark Mode Reader` extensions, if you have them installed and running.
 + Tested only on Firefox and Google Chrome.
