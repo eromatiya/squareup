@@ -4,7 +4,8 @@
 	width: 100%;
 	height: auto;
 	margin-top: 10px;
-	border-radius: 6px;
+	border-radius: 24px;
+	display: none;
 	box-shadow:
 				0 2.8px 2.2px rgba(0, 0, 0, 0.034),
 				0 6.7px 5.3px rgba(0, 0, 0, 0.048),
@@ -13,6 +14,10 @@
 				0 41.8px 33.4px rgba(0, 0, 0, 0.086),
 				0 100px 80px rgba(0, 0, 0, 0.12);
 	user-select: none;
+}
+
+#suggestions-container.suggestion-show {
+	display: block;
 }
 
 ul#suggestions {
@@ -31,9 +36,8 @@ li button.suggestion-button {
 	color: var(--font-color);
 	font-size: 12pt;
 	border: none;
-	padding: 5px;
 	width: auto;
-	margin: 5px 0;
+	margin: 2px 0;
 	width: 100%;
 	overflow-y: auto;
 }

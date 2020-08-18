@@ -20,12 +20,12 @@ class SearchBoxKeyEvents {
 		if (event.key.length === 1 || event.key === 'Backspace') {
 			if (this._searchBox.value < 1) {
 				// Hide suggestions
-				// autoSuggestion.hideSuggestions();
+				autoSuggestion.hideSuggestions();
 				return;
 			}
 
 			// Fetch suggestion/phrases
-			// autoSuggestion.fetchSuggestions();
+			autoSuggestion.fetchSuggestions();
 			return;
 		}
 
