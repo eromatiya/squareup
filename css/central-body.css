@@ -20,7 +20,7 @@
 
 #search-box {
 	font-family: 'Inter', 'SF Pro Text', sans-serif;
-	background: #F2F2F2;
+	background: var(--base-bg);
 	color: var(--font-color);
 	font-size: 16pt;
 	text-align: center;

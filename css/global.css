@@ -1,9 +1,23 @@
 :root {
 	--base-bg: #FFFFFF;
+	--boxes-bg: var(--base-bg);
 	--font-color: #0A0A0A;
 	--clock-color: #FFFFFF;
 	--button-hover: #CDCDCD;
 	--button-active: #E1E1E1;
+	--gradient-start-bg: #4568dc;
+	--gradient-end-bg: #b06ab3;
+}
+
+[data-theme="dark"] {
+	--base-bg: #1A1A1A;
+	--boxes-bg: var(--base-bg);
+	--font-color: #F2F2F2;
+	--clock-color: #0A0A0A;
+	--button-hover: #252525;
+	--button-active: #353535;
+	--gradient-start-bg: #cc2b5e;
+	--gradient-end-bg: #753a88;
 }
 
 html,
