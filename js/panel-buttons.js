@@ -79,7 +79,19 @@ class PanelButtons {
 	}
 
 	_populatePanel() {
-		// Populate
+		
+		// Create theme switcher
+		this._generateFromManual(
+			'web-menu',
+			'web-menu',
+			() => {
+				// This is dummy on click event
+				// Look web-menu.js
+				console.log('Launch web menu');
+			}
+		);
+
+		// Create web shortcuts
 		this._generateFromList();
 
 		// Create search engine switcher button

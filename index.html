@@ -44,7 +44,7 @@
 		<div></div>
 		<div></div>
 	</div>
-	<div id='central-body'>
+	<div id='central-body' class='central-body-hide'>
 		<div id='clock'>00:00 AM</div>
 		<div id='search-container'>
 			<input type='text' id='search-box' name='search-box' autofocus='on' autocomplete='off' placeholder='Search with web'>
@@ -62,8 +62,37 @@
 	</div>
 	<div id='panel-container'>
 		<div id='panel-body'>
+			<!-- panel-buttons.js generates the items here -->
+		</div>
 	</div>
-		<!-- panel-buttons.js generates the items here -->
+
+	<div id='web-menu' class='web-menu-show'>
+		<div id='web-menu-body'>
+			<div id='web-menu-searchbox-container'>
+				<input type='text' id='web-menu-searchbox' autocomplete='off' placeholder='  Type to search'>
+			</div>
+			<div id='web-menu-list-container'>
+				<ul id='web-menu-list'>
+					<!-- Below is the structure of an LI that will be generated in js/web-menu.js -->
+					<!-- 
+					<li>
+						<a href='https://example.com'>
+							<div class='web-item'>
+								<div class='web-item-container'>
+									<div class='web-item-body'>
+										<div class='web-item-icon-container'>
+											<div class='web-item-icon'></div>
+										</div>
+										<div class='web-item-name'></div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+ 					-->
+				</ul> 
+			</div>
+		</div>
 	</div>
 
 	<script src='js/config.js'></script>
@@ -74,6 +103,7 @@
 	<script src='js/search-query-send.js'></script>
 	<script src='js/theme-switcher.js'></script>
 	<script src='js/suggestions.js'></script>
+	<script src='js/web-menu.js'></script>
 
 	<script src='js/script.js'></script>
 </body>

@@ -3,11 +3,21 @@
 	top: 50%;
 	left: 50%;
 	z-index: 10;
+	opacity: 1;
 	transform: translate(-50%,-50%);
+	transition:
+				opacity var(--transition-speed),
+				z-index var(--transition-speed);
+
+}
+
+#central-body.central-body-hide {
+	z-index: 0;
+	opacity: 0;
 }
 
 #clock {
-	font-family: 'Inter', 'SF Pro Text', sans-serif;
+	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
 	font-weight: bold;
 	font-size: 88pt;
 	color: var(--clock-color);

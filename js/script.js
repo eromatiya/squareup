@@ -21,3 +21,5 @@ const themeSwitcher = new ThemeSwitcher();
 
 // Instantiate autosuggestion
 const autoSuggestion = new AutoSuggestion();
+
+const webMenu = new WebMenu();
