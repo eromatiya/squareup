@@ -44,6 +44,12 @@ class SearchQuerySend {
 	sendQuery() {
 		const searchQuery = this._searchBox.value;
 
+		// Check if a valid url
+		if (this._isURL(searchQuery)) {
+			this._openURL(searchQuery);
+			return;
+		}
+
 		// If quick search, return
 		if (this._quickSearch(searchQuery)) {
 			return;
