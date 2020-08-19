@@ -1,4 +1,4 @@
-## Polyfloat
+## Squareup
 
 A sleek and modern startpage
 
