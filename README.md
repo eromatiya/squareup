@@ -17,12 +17,29 @@ A sleek and modern startpage
 ## Quick search
 
 + `r/` + `subreddit name` will open the subreddit.
+	- `r/unixporn`
+	- `r/startpages`
+
 + `w/` + `search query` to search in wikipedia.
+	- `w/linux`
+	- `w/Javascript`
+
 + `u/` + `search query` to search for an image/photo in unsplash.
-+ `a/` + `search query` to search a product in amazon.
-+ `e/` + `search query` to search a product in ebay.
-+ `y/` + `search query` to search a video in youtube.
-+ `n/` + `comic id` to search a "comic" in a certain "comic" website.
+	- `u/nature`
+	- `u/technology`
+
++ `a/` + `search query` to search a product on amazon.
+	- `a/intel celeron`
+
++ `e/` + `search query` to search a product on ebay.
+	- `e/pentium 4`
+
++ `y/` + `search query` to search a video on youtube.
+	- `y/how to build a nuclear reactor`
+	- `y/strange alien sightings in oregon`
+
++ `n/` + `comic id` to search a "comic" on a certain "comic" website.
+	- `n/177013`
 
 ## Settings and Customization
 
@@ -78,6 +95,7 @@ const quickSearchData = {
 		urlPrefix: 'https://reddit.com/r/'
 	},
 	...
+}
 ```
 
 #### Switch default search engine
@@ -110,6 +128,6 @@ const searchEngines = {
 
 ### Important Note
 
-+ Make sure that javascript is enabled!
-+ Make sure to whitelist the startpage in `NoScript` and `Dark Mode Reader` extensions, if you have them installed and running.
++ Make sure that javascript is enabled in your browser! My first plan was to make a javascript-less and a minimal homepage with just a bunch of CSS. But after adding the clock that requires javascript, I can't stop myself from adding stuff<sup>(bloat)</sup>.
++ Make sure to whitelist the startpage in `NoScript` and `Dark Mode Reader` extensions, if you have them installed/running.
 + Tested only on Firefox and Google Chrome.
