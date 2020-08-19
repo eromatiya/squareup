@@ -87,12 +87,13 @@
 
 /* Element inside the list item */
 .web-item {
-	background: transparent;
+	/*background: transparent;*/
+	background: var(--base-secondary-bg);
 	width: 128px;
 	height: 128px;
 	margin: 5px;
 	cursor: pointer;
-	border-radius: 6px;
+	border-radius: 12px;
 }
 
 .web-item:hover {
@@ -106,14 +107,6 @@
 }
 
 .web-item-focus {
-	background: var(--active-bg);
-}
-
-.web-item-focus:hover {
-	background: var(--hover-bg);
-}
-
-.web-item-focus:active {
 	background: var(--active-bg);
 }
 

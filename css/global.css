@@ -1,11 +1,12 @@
 :root {
 	--base-bg: #FFFFFF;
-	--base-secondary-bg: #CDCDCD;
+	--base-accent: #92B6F4;
+	--base-secondary-bg: #EFEFEF;
 	--boxes-bg: var(--base-bg);
 	--font-color: #0A0A0A;
 	--clock-color: #FFFFFF;
 	--hover-bg: #CDCDCD;
-	--active-bg: #E1E1E1;
+	--active-bg: var(--base-accent);
 	--button-hover: var(--hover-bg);
 	--button-active: var(--active-bg);
 	--gradient-start-bg: #4568dc;
@@ -15,12 +16,13 @@
 
 [data-theme='dark'] {
 	--base-bg: #1A1A1A;
+	--base-accent: #EE4F84;
 	--base-secondary-bg: #252525;
 	--boxes-bg: var(--base-bg);
 	--font-color: #F2F2F2;
 	--clock-color: #0A0A0A;
 	--hover-bg: #353535;
-	--active-bg: #252525;
+	--active-bg: var(--base-accent);
 	--button-hover: var(--hover-bg);
 	--button-active: var(--active-bg);
 	--gradient-start-bg: #7b4397;
