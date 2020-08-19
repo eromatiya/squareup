@@ -44,6 +44,9 @@ class Config {
 			},
 			'n/': {
 				urlPrefix: 'https://nhentai.net/g/'	
+			},
+			'g/': {
+				urlPrefix: 'https://github.com/search?q='	
 			}
 		};
 

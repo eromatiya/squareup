@@ -23,11 +23,11 @@ A sleek and modern startpage
 
 ## Quick search
 
-+ `r/` + `subreddit name` will open the subreddit.
++ `r/` + `subreddit name` will open the subreddit if valid or existing.
 	- `r/unixporn`
 	- `r/startpages`
 
-+ `w/` + `search query` to search in wikipedia.
++ `w/` + `search query` to search on wikipedia.
 	- `w/linux`
 	- `w/Javascript`
 
@@ -47,6 +47,11 @@ A sleek and modern startpage
 
 + `n/` + `comic id` to search a "comic" on a certain "comic" website.
 	- `n/177013`
+
++ `g/` + `search query` to search a for a repo/user on github.
+	- `g/manilarome`
+	- `g/polyfloat`
+	- `g/manilarome/polyfloat`
 
 ## Settings and Customization
 
