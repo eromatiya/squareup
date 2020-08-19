@@ -55,6 +55,6 @@ class SearchQuerySend {
 		}
 
 		// Web search
-		this._openURL(searchEngineSettings.getSearchEngineURLPrefix() + searchQuery);
+		this._openURL(searchEngineSwitcher.getSearchEngineURLPrefix() + searchQuery);
 	};
 }
