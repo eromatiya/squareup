@@ -74,18 +74,23 @@ class ThemeSwitcher {
 		this._applyThemeColors(themeLightHour, themeLightDark);
 	}
 
+	themeSwitch() {
+		// Update
+		this._updateThemeMode();
+
+		// Save search engine
+		this._localStorage.setItem('themeMode', this._activeThemeMode);
+
+		// Increment index
+		this._incrementThemeModeIndex();
+	}
+
 	_buttonThemeSwitchClickEvent() {
 		this._buttonThemeSwitch.addEventListener(
 			'click',
 			() => {
-				// Update
-				this._updateThemeMode();
-
-				// Save search engine
-				this._localStorage.setItem('themeMode', this._activeThemeMode);
-
-				// Increment index
-				this._incrementThemeModeIndex();
+				// Switch color scheme
+				this.themeSwitch();
 			}
 		);
 	}

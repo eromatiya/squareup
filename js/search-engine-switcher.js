@@ -47,18 +47,23 @@ class SearchEngineSwitcher {
 		this._searchEnginesIndex = (this._searchEnginesIndex + 1) % this._searchEnginesArr.length;
 	}
 
+	searchEngineSwitch() {
+		// Update
+		this._updateSearchEngine();
+				
+		// Save search engine
+		this._localStorage.setItem('searchEngine', this._activeSearchEngine);
+
+		// Increment index
+		this._incrementSearchEngineIndex();
+	}
+
 	_buttonSearchEngineClickEvent() {
 		this._buttonSearchEngine.addEventListener(
 			'click',
 			() => {
-				// Update
-				this._updateSearchEngine();
-				
-				// Save search engine
-				this._localStorage.setItem('searchEngine', this._activeSearchEngine);
-
-				// Increment index
-				this._incrementSearchEngineIndex();
+				// Switch search engine
+				this.searchEngineSwitch();
 			}
 		)
 	}

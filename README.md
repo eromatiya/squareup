@@ -8,11 +8,18 @@ A sleek and modern startpage
 + Web Search Suggestions
 + Mobile Support
 + Theme Switcher
++ Keyboard navigation
 + Search Engine Selection
 + Animated Background
 + Web Menu with Fuzzy Search
 + Vanilla Javascript!
 + And many bugs!
+
+## Keybindings
+
++ <kbd>Escape</kbd> - toggles web menu
++ <kbd>Control + Space</kbd> - switches search engine
++ <kbd>Alt + Space</kbd> - switches color scheme
 
 ## Quick search
 
