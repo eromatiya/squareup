@@ -1,6 +1,14 @@
-## Squareup
+## squareup
 
 A sleek and modern startpage
+
+<p align='center'>
+	<img alt='squareup on light mode' src='scrot.webp'/>
+	<br/>
+	<i>
+		squareup startpage
+	</i>
+</p>
 
 ## Features
 
