@@ -15,6 +15,11 @@ A sleek and modern startpage
 + Vanilla Javascript!
 + And many bugs!
 
+## Usage
+
++ Clone this repo.
++ Set it as your default homepage.
+
 ## Keybindings
 
 + <kbd>Escape</kbd> - toggles web menu
