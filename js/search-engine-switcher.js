@@ -1,4 +1,4 @@
-class SearchEngineSettings {
+class SearchEngineSwitcher {
 	constructor() {
 		this._localStorage = window.localStorage;
 		this._searchBox = document.querySelector('#search-box');

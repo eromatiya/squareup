@@ -23,7 +23,7 @@ const autoSuggestion = new AutoSuggestion();
 const webMenu = new WebMenu();
 
 // Instantiate search engine settings
-const searchEngineSettings = new SearchEngineSettings();
+const searchEngineSwitcher = new SearchEngineSwitcher();
 
 // Instantiate theme switcher
 const themeSwitcher = new ThemeSwitcher();
