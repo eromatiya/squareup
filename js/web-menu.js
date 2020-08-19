@@ -8,6 +8,7 @@ class WebMenu {
 		this._webMenuSearchBox = document.querySelector('#web-menu-searchbox');
 		this._webMenuButton = document.querySelector('#button-web-menu');
 
+		this._webMenuGenerated = false;
 		this._webMenuVisibility = false;
 		this._webItemFocus;
 		this._webListIndex = 0;
@@ -21,11 +22,18 @@ class WebMenu {
 
 	// Show web menu screen
 	_showWebMenu() {
-		this._webMenuScreen.classList.add('web-menu-show');
+
+		// Populate only on first web menu's first open
+		if (!this._webMenuGenerated) {
+			console.log('Populating web menu...');
+			this._populateWebMenu();
+		}
 
 		// Enable inputs
 		this._disableWebMenuInputs(false);
-
+		
+		// Show web menu
+		this._webMenuScreen.classList.add('web-menu-show');
 		this._webMenuVisibility = !this._webMenuVisibility;
 
 		// Focus to input field
@@ -136,6 +144,12 @@ class WebMenu {
 
 		// Call to sort list
 		this._sortList();
+
+		// Get first item
+		this._getFirstItem();
+
+		// Set to true
+		this._webMenuGenerated = true;
 	}
 
 	// Allow fuzzy searching in web menu
@@ -382,13 +396,13 @@ class WebMenu {
 	}
 
 	_init() {
+		// Create fuzzy searching string function
 		this._fuzzySearch();
-		this._populateWebMenu();
-		this._getFirstItem();
-
+		
 		// Disable inputs
 		this._disableWebMenuInputs(true);
 
+		// Register events
 		this._webMenuSearchBoxKeyDownEvent();
 		this._webMenuKeyDownEvent();
 		this._webMenuButtonClickEvent();

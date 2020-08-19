@@ -65,3 +65,20 @@ option {
 img {
 	user-select: none;
 }
+
+/* Scrollbar */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--base-bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--base-secondary-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--hover-bg);
+}

@@ -48,9 +48,10 @@
 	background: var(--base-secondary-bg);
 	color: var(--font-color);
 	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
+	font-size: 12pt;
 	font-weight: 700;
 	text-align: center;
-	padding: 5px;
+	padding: 2px;
 	border: none;
 	border-radius: 6px;
 	width: 225px;
