@@ -8,7 +8,6 @@
 	transition:
 				opacity var(--transition-speed),
 				z-index var(--transition-speed);
-
 }
 
 #central-body.central-body-hide {

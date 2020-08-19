@@ -1,5 +1,4 @@
 class WebMenu {
-
 	constructor() {
 		this._webSites = config.getWebSites();
 		this._webMenuScreen = document.querySelector('#web-menu');
@@ -113,7 +112,6 @@ class WebMenu {
 			const site = webData.site;
 			const icon = webData.icon;
 			const url = webData.url;
-
 			const li = document.createElement('li');
 
 			// Generate web item/li child
@@ -261,20 +259,23 @@ class WebMenu {
 
 	// Arrow key navigation
 	_navigateWithArrows(key, len) {
-		// assign constiables to key codes
+
+		// Assign constant variables to key codes
 		const [right, left, down, up] = [39, 37, 40, 38];
 
+		// Calculate screen width - Allows up/down navigation
 		const getIndexByWindowWidth = () => {
 			if (window.innerWidth <= 580) { return 1; }
 
-			// Width of elements(<li>) in pixels
+			// Width of elements(<li>) and scrollbar in pixels
 			const menuItemWidth = 138;
 			const scrollBarWidth = 10;
 
 			// Viewport width
 			const vw = unit => window.innerWidth * (unit / 100);
 			
-			// Gets the number of columns by dividing the screen width minus the padding, scroll width and 
+			// Gets the number of columns by dividing the 
+			// screen width minus the padding, scroll width and 
 			// average of menu item width by the menu item width
 			const containerWindow = ((window.innerWidth - (menuItemWidth / 2) -
 				scrollBarWidth - vw(24)) / menuItemWidth);
@@ -288,22 +289,18 @@ class WebMenu {
 			switch (key) {
 				case right:
 					this._webListIndex++;
-					// Clear web menu searchbox
 					this._webMenuSearchBox.value = '';
 					break;
 				case left:
 					this._webListIndex--;
-					// Clear web menu searchbox
 					this._webMenuSearchBox.value = '';
 					break;
 				case up:
 					this._webListIndex = this._webListIndex - getIndexByWindowWidth();
-					// Clear web menu searchbox
 					this._webMenuSearchBox.value = '';
 					break;
 				case down:
 					this._webListIndex = this._webListIndex + getIndexByWindowWidth();
-					// Clear web menu searchbox
 					this._webMenuSearchBox.value = '';
 					break;
 			}
@@ -338,7 +335,6 @@ class WebMenu {
 			this._webItemFocus = this._webMenuList.getElementsByTagName('li')[0];
 			this._addFocus(this._webItemFocus, 'web-item-focus');
 		}
-
 	}
 
 	_webMenuKeyDownEvent() {
@@ -371,11 +367,13 @@ class WebMenu {
 					this.toggleWebMenu();
 
 				} else if (e.key === 'Backspace' && this._webMenuSearchBox.value.length  < 1) {
+
 					// Hide web menu if backspace is pressed and searchbox value is 0
 					this.toggleWebMenu();
 					return;
 
 				} else if ((e.key === 'Escape') || (e.key === 'Alt')) {
+
 					// Ignore escape and alt key
 					return;
 				}

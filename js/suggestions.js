@@ -101,8 +101,11 @@ class AutoSuggestion {
 			this._suggestionsUL.appendChild(li);
 		}
 
-		// Show suggestions
-		this._showSuggestions();
+		// Don't show if searchbox has no value
+		if (this._searchBox.value.length > 1) {
+			// Show suggestions
+			this._showSuggestions();
+		}
 	}
 
 	fetchSuggestions() {
