@@ -349,6 +349,12 @@ class Config {
 				icon: 'mdn',
 				url: 'https://developer.mozilla.org/',
 				category: 'development'
+			},
+			{
+				site: 'Qwant',
+				icon: 'qwant',
+				url: 'https://qwant.com/',
+				category: 'search engine'
 			}
 		];
 
