@@ -1,0 +1,51 @@
+/* Panel Button */
+.panel-button {
+	background: transparent;
+	width: 48px;
+	height: 48px;
+	position: relative;
+	border-radius: 6px;
+	border: none;
+	cursor: pointer;
+	transition: transform 0.2s;
+}
+
+.panel-button:hover {
+	background: var(--button-hover);
+	transform: scale(1.25);
+}
+
+.panel-button:active {
+	background: var(--button-active);
+	transform: scale(1);
+}
+
+.panel-button-image {
+	background-size: cover;
+}
+
+/* Panel Link - a href */
+.panel-link {
+	display: block;
+	text-decoration: none;
+	outline: 0;
+	border: none;
+	outline-style: none;
+	user-select: none;
+	-webkit-user-drag: none;
+}
+
+.panel-button div {
+	background-size: cover;
+	width: 24px;
+	height: 24px;
+	border: none;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	max-width: 100%;
+	max-height: 100%;
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, viewport-fit=cover, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+	<meta name='robots' content='noindex'>
+	<link rel='stylesheet' type='text/css' href='css/style.css'>
+
+	<!-- Favicons -->
+	<link rel='shortcut icon' href='assets/favicon/favicon.ico'>
+	<link rel='icon' sizes='16x16 32x32 64x64' href='assets/favicon/favicon.ico'>
+	<link rel='icon' type='image/png' sizes='196x196' href='assets/favicon/favicon-192.png'>
+	<link rel='icon' type='image/png' sizes='160x160' href='assets/favicon/favicon-160.png'>
+	<link rel='icon' type='image/png' sizes='96x96' href='assets/favicon/favicon-96.png'>
+	<link rel='icon' type='image/png' sizes='64x64' href='assets/favicon/favicon-64.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='assets/favicon/favicon-32.png'>
+	<link rel='icon' type='image/png' sizes='16x16' href='assets/favicon/favicon-16.png'>
+	<link rel='apple-touch-icon' href='assets/favicon/favicon-57.png'>
+	<link rel='apple-touch-icon' sizes='114x114' href='assets/favicon/favicon-114.png'>
+	<link rel='apple-touch-icon' sizes='72x72' href='assets/favicon/favicon-72.png'>
+	<link rel='apple-touch-icon' sizes='144x144' href='assets/favicon/favicon-144.png'>
+	<link rel='apple-touch-icon' sizes='60x60' href='assets/favicon/favicon-60.png'>
+	<link rel='apple-touch-icon' sizes='120x120' href='assets/favicon/favicon-120.png'>
+	<link rel='apple-touch-icon' sizes='76x76' href='assets/favicon/favicon-76.png'>
+	<link rel='apple-touch-icon' sizes='152x152' href='assets/favicon/favicon-152.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='assets/favicon/favicon-180.png'>
+	<meta name='msapplication-TileColor' content='#FFFFFF'>
+	<meta name='msapplication-TileImage' content='assets/favicon/favicon-144.png'>
+	<meta name='msapplication-config' content='assets/favicon/browserconfig.xml'>
+
+	<title>Home</title>
+</head>
+<body>
+	<div class='gradient-body'>
+		<!-- These are the floating boxes -->
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+	<div id='central-body'>
+		<div id='clock'>00:00 AM</div>
+		<div id='search-container'>
+			<input type='text' id='search-box' name='search-box' autofocus='on' autocomplete='off' placeholder='Search with web'>
+			<div id='suggestions-container'>
+				<ul id='suggestions'>
+					<!-- Template of li, check suggestions.js -->
+					<!--
+					<li class='suggestion'>
+						<button type='button' class='suggestion-button'>Suggestion1</button>
+					</li>
+					-->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id='panel-container'>
+		<div id='panel-body'>
+			<!-- panel-buttons.js generates the items here -->
+		</div>
+	</div>
+
+	<div id='web-menu'>
+		<div id='web-menu-body'>
+			<div id='web-menu-searchbox-container'>
+				<input type='text' id='web-menu-searchbox' autocomplete='off' placeholder='Type to search'>
+			</div>
+			<div id='web-menu-list-container'>
+				<ul id='web-menu-list'>
+					<!-- Below is the structure of an LI that will be generated in js/web-menu.js -->
+					<!-- 
+					<li>
+						<a href='https://example.com'>
+							<div class='web-item'>
+								<div class='web-item-container'>
+									<div class='web-item-body'>
+										<div class='web-item-icon-container'>
+											<div class='web-item-icon'></div>
+										</div>
+										<div class='web-item-name'></div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+ 					-->
+				</ul> 
+			</div>
+		</div>
+	</div>
+
+	<script src='js/config.js'></script>
+	<script src='js/clock.js'></script>
+	<script src='js/search-box-key-events.js'></script>
+	<script src='js/search-engine-switcher.js'></script>
+	<script src='js/search-query-send.js'></script>
+	<script src='js/theme-switcher.js'></script>
+	<script src='js/suggestions.js'></script>
+	<script src='js/web-menu.js'></script>
+	<script src='js/central-body.js'></script>
+	<script src='js/panel-buttons.js'></script>
+	<script src='js/document-key-events.js'></script>
+
+	<script src='js/script.js'></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+:root {
+	--base-bg: #FFFFFF;
+	--base-secondary-bg: #CDCDCD;
+	--boxes-bg: var(--base-bg);
+	--font-color: #0A0A0A;
+	--clock-color: #FFFFFF;
+	--hover-bg: #CDCDCD;
+	--active-bg: #E1E1E1;
+	--button-hover: var(--hover-bg);
+	--button-active: var(--active-bg);
+	--gradient-start-bg: #4568dc;
+	--gradient-end-bg: #b06ab3;
+	--transition-speed: 300ms;
+}
+
+[data-theme='dark'] {
+	--base-bg: #1A1A1A;
+	--base-secondary-bg: #252525;
+	--boxes-bg: var(--base-bg);
+	--font-color: #F2F2F2;
+	--clock-color: #0A0A0A;
+	--hover-bg: #353535;
+	--active-bg: #252525;
+	--button-hover: var(--hover-bg);
+	--button-active: var(--active-bg);
+	--gradient-start-bg: #7b4397;
+	--gradient-end-bg: #dc2430;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
+}
+
+body {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: var(--base-body-bg);
+}
+
+/* Remove outline on input fields on chrome */
+input:focus,
+textarea:focus,
+select:focus {
+	outline: none;
+}
+
+/* Placeholder */
+::placeholder {
+	color: var(--font-color);
+	opacity: 0.65;
+}
+
+option {
+	text-align: left;
+}
+
+img {
+	user-select: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--base-bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--base-secondary-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--hover-bg);
+}
