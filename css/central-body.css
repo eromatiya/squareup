@@ -21,11 +21,11 @@
 	font-weight: bold;
 	font-size: 88pt;
 	color: var(--clock-color);
+	white-space: nowrap;
 	text-align: center;
 	margin-bottom: 40px;
 	text-shadow: 2px 2px #0A0A0A22;
 	user-select: none;
-	-webkit-user-drag: none;
 	transition: font-size var(--transition-speed);
 }
 
@@ -58,9 +58,20 @@
 				font-size var(--transition-speed);
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
 	#search-box {
 		max-width: 70%;
+		font-size: 14pt;
+	}
+
+	#clock {
+		font-size: 70pt;
+	}
+}
+
+@media screen and (max-width: 530px) {
+	#search-box {
+		max-width: 65%;
 		font-size: 14pt;
 	}
 
@@ -69,9 +80,20 @@
 	}
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 515px) {
 	#search-box {
 		max-width: 60%;
+		font-size: 14pt;
+	}
+
+	#clock {
+		font-size: 48pt;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	#search-box {
+		max-width: 55%;
 		font-size: 12pt;
 	}
 
