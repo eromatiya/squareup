@@ -161,6 +161,10 @@
 }
 
 @media screen and (max-width: 470px) {
+	#web-menu-searchbox {
+		width: 50vw;
+	}
+
 	#web-menu {
 		padding: 6vh 18vw 0 18vw;
 	}
