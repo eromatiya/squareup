@@ -315,12 +315,16 @@ class WebMenu {
 					// Hide web menu if backspace is pressed and searchbox value is 0
 					this.toggleWebMenu();
 					return;
-
-				} else if ((e.key === 'Escape') || (e.key === 'Alt')) {
-					return;
 				}
+			}
+		);
+	}
 
-				// Filter
+	_webMenuSearchBoxKeyUpEvent() {
+		this._webMenuSearchBox.addEventListener(
+			'keyup',
+			e => {
+				if (e.key.length > 1) return;
 				this._filterWebList();
 			}
 		);
@@ -339,6 +343,7 @@ class WebMenu {
 		this._fuzzySearch();
 		this._disableWebMenuInputs(true);
 		this._webMenuSearchBoxKeyDownEvent();
+		this._webMenuSearchBoxKeyUpEvent();
 		this._webMenuKeyDownEvent();
 		this._webMenuButtonClickEvent();
 	}
