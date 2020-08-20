@@ -153,6 +153,10 @@ const searchEngines = {
 }
 ```
 
+#### Changing clock mode
+
+There are two clock modes available. `24-hour` and `12-hour`. Switch between clock modes by just clicking on the clock. Simple.
+
 ### Important Note
 
 + Make sure that javascript is enabled in your browser! My first plan was to make a javascript-less and a minimal homepage with just a bunch of CSS. But after adding the clock that requires javascript, I can't stop myself from adding stuff<sup>(bloat)</sup>.
