@@ -1,11 +1,7 @@
 class PanelButtons {	
 	constructor() {
 		this._panel = document.querySelector('#panel-body');
-		
-		// Retrieve panelSites object from config instance
 		this._panelSites = config.getPanelSites();
-
-		// Populate
 		this._populatePanel();
 	}
 
@@ -14,7 +10,6 @@ class PanelButtons {
 		panelButton.id = `button-${id}`;
 		panelButton.className = className;
 		panelButton.addEventListener('click', () => {callback();});
-
 		return panelButton;
 	}
 
@@ -23,7 +18,6 @@ class PanelButtons {
 		buttonImage.id = id;
 		buttonImage.className = className;
 		buttonImage.style.backgroundImage = background;
-	
 		return buttonImage;
 	}
 
@@ -52,7 +46,7 @@ class PanelButtons {
 			const icon = this._panelSites[parseInt(i, 10)].icon;
 			const url = this._panelSites[parseInt(i, 10)].url;
 	
-			// Create a href
+			// Create an href
 			const panelLink = document.createElement('a');
 			panelLink.className = 'panel-link';
 			panelLink.href = url;
@@ -84,7 +78,6 @@ class PanelButtons {
 			'web-menu',
 			'web-menu',
 			() => {
-				// This is a dummy on click event
 				// Look web-menu.js
 				console.log('Toggle web menu');
 			}
@@ -98,7 +91,6 @@ class PanelButtons {
 			'search-engine',
 			'search-engine', 
 			() => {
-				// This is a dummy on click event
 				// Look search-engine-settings.js
 				console.log('Switch search engine');
 			}
@@ -109,7 +101,6 @@ class PanelButtons {
 			'theme-switch',
 			'theme-switch',
 			() => {
-				// This is a dummy on click event
 				// Look theme-switcher.js
 				console.log('Switch theme');
 			}
