@@ -6,57 +6,73 @@ class AutoSuggestion {
 	}
 
 	hideSuggestions() {
-		// Hide suggestions
 		this._suggestionsContainer.classList.remove('suggestion-show');
-
-		// Kill all UL's children
-		// Massacre them all
 		this._suggestionsUL.querySelectorAll('*').forEach(child => child.remove());
 	}
 
 	_showSuggestions() {
-		// Show suggestions
 		this._suggestionsContainer.classList.add('suggestion-show');
 	}
 
-	// Create input events
 	_createButtonEvents(button) {
 
-		// Update searchbox on enter key and mouse click
+		const nextSuggestion = () => {
+			const suggestionButtons = Array.prototype.slice.call(document.querySelectorAll('button'));
+			const suggestionIndex = (suggestionButtons.indexOf(document.activeElement) + 1) % suggestionButtons.length;
+			const suggestionButton = suggestionButtons[parseInt(suggestionIndex, 10)];
+			suggestionButton.focus();
+		}
+
+		const previousSuggestion = () => {
+			const suggestionButtons = Array.prototype.slice.call(document.querySelectorAll('button'));
+			let suggestionIndex = (suggestionButtons.indexOf(document.activeElement) - 1) % suggestionButtons.length;
+
+			if (suggestionIndex < 0) { 
+				suggestionIndex = suggestionButtons.length - 1;
+			}
+
+			const suggestionButton = suggestionButtons[parseInt(suggestionIndex, 10)];
+			suggestionButton.focus();
+		}
+
+		const focusSearchBox = () => {
+			this._searchBox.value = this._searchBox.value.slice(0, -1);
+			this._searchBox.focus();
+		}
+
+		const querySend = () => {
+			this._searchBox.value = button.innerText;
+			searchQuerySend.sendQuery();
+		}
+
+		const keyUpEvents = {
+			'Enter': function() {
+				querySend();
+			},
+			'Backspace': function() {
+				focusSearchBox();
+			},
+			'ArrowDown': function() {
+				nextSuggestion();
+			},
+			'ArrowRight': function() {
+				nextSuggestion();
+			},
+			'ArrowUp': function() {
+				previousSuggestion();
+			},
+			'ArrowLeft': function() {
+				previousSuggestion();
+			}
+		};
+
 		button.addEventListener(
 			'keyup',
 			e => {
-				if (e.key === 'Enter') {
-
-					this._searchBox.value = button.innerText;
-					this._searchBox.focus();
-
-				} else if (e.key === 'Backspace') {
-
-					this._searchBox.focus();
-
-				} else if ((e.key === 'ArrowDown') || e.key === 'ArrowRight') {
-
-					e.preventDefault();
-
-					const suggestionButtons = Array.prototype.slice.call(document.querySelectorAll('button'));
-					const suggestionIndex = (suggestionButtons.indexOf(document.activeElement) + 1) % suggestionButtons.length;
-					const suggestionButton = suggestionButtons[parseInt(suggestionIndex, 10)];
-					suggestionButton.focus();
-
-				} else if ((e.key === 'ArrowUp') || e.key === 'ArrowLeft') {
-
-					e.preventDefault();
-
-					const suggestionButtons = Array.prototype.slice.call(document.querySelectorAll('button'));
-					let suggestionIndex = (suggestionButtons.indexOf(document.activeElement) - 1) % suggestionButtons.length;
-
-					if (suggestionIndex < 0) { 
-						suggestionIndex = suggestionButtons.length - 1;
-					}
-
-					const suggestionButton = suggestionButtons[parseInt(suggestionIndex, 10)];
-					suggestionButton.focus();
+				e.preventDefault();
+				const callback = keyUpEvents[String(e.key)];
+				if (typeof callback === 'function') {
+					callback();
 				}
 			}
 		);
@@ -64,21 +80,19 @@ class AutoSuggestion {
 		button.addEventListener(
 			'click',
 			e => {
-				this._searchBox.value = button.innerText;
-				this._searchBox.focus();
+				querySend();
 			}
 		);
 	}
 
-	// Generate and parse suggestions
-	_autocompleteCallback(phrase) {
+	_parseSuggestionsObject(phrase) {
 
 		// Filter/parse the object
 		const suggestion = phrase.map(i => i.phrase)
 						.filter(s => !(s.toLowerCase() === String(this._searchBox.value).toLowerCase()))
 						.slice(0, 4);
 
-		// Empty UL on every callback to refresh list
+		// Empty UL
 		this._suggestionsUL.querySelectorAll('*').forEach(child => child.remove());
 
 		// Generate list elements
@@ -101,9 +115,8 @@ class AutoSuggestion {
 			this._suggestionsUL.appendChild(li);
 		}
 
-		// Don't show if searchbox has no value
+		// Show suggestions if searchbox > 1
 		if (this._searchBox.value.length > 1) {
-			// Show suggestions
 			this._showSuggestions();
 		}
 	}
@@ -114,7 +127,7 @@ class AutoSuggestion {
 		const searchQuery = String(this._searchBox.value);
 		window[String(callback)] = res => {
 			// Passed the suggestion object to process it
-			this._autocompleteCallback(res);
+			this._parseSuggestionsObject(res);
 		};
 
 		// Fetch from duckduckgo
