@@ -103,7 +103,6 @@
 .web-item:active {
 	background: var(--active-bg);
 	box-shadow: 0 0 0 1px var(--active-bg) inset;
-	border-radius: 6px;
 }
 
 .web-item-focus {
