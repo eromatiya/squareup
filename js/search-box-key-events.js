@@ -4,21 +4,21 @@ class SearchBoxKeyEvents {
 		this._registerSearchBoxOnKeyUpEvent();
 	}
 
-	_registerSearchBoxOnKeyUpEvent(event) {
+	_registerSearchBoxOnKeyUpEvent() {
 
 		this._searchBox.addEventListener(
 			'keyup',
 			e => {
-				event.preventDefault();
+				e.preventDefault();
 				
 				// Fail safe device
 				if (!this._searchBox) {
 					this._searchBox = document.querySelector('#search-box');
 				}
 				
-				if (event.key === 'Tab') return;
+				if (e.key === 'Tab') return;
 
-				if (event.key.length === 1 || event.key === 'Backspace') {
+				if (e.key.length === 1 || e.key === 'Backspace') {
 					if (this._searchBox.value < 1) {
 						autoSuggestion.hideSuggestions();
 						return;
@@ -30,7 +30,7 @@ class SearchBoxKeyEvents {
 				}
 
 				// Search query
-				if (event.key === 'Enter') {
+				if (e.key === 'Enter') {
 
 					// Don't accept empty strings
 					if (this._searchBox.value < 1) {
