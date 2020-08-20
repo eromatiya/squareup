@@ -22,14 +22,12 @@ class Clock {
 
 		// 24-hour mode
 		if (this._twentyFourMode === true) {
-			console.log('24');
 			hour = this._appendZero(hour);
 			this._clock.innerText = `${hour}:${min}`;
 			return;
 		}
 		
 		// 12-hour mode
-		console.log('12');
 		hour = (hour === 0) ? 12 : ((hour > 12) ? (hour - 12) : hour);
 		hour = this._appendZero(hour);
 		midDay = (hour >= 12) ? 'PM' : 'AM';
