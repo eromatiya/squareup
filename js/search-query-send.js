@@ -6,13 +6,8 @@ class SearchQuerySend {
 
 	// Is query a valid URL
 	_isURL(u) {
-		let dummyInput;
-
-		if (!dummyInput) {
-			dummyInput = document.createElement('input');
-			dummyInput.setAttribute('type', 'url');
-		}
-
+		let dummyInput = document.createElement('input');
+		dummyInput.setAttribute('type', 'url');
 		dummyInput.value = u;
 		return dummyInput.validity.valid;
 	}

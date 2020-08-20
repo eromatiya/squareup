@@ -202,6 +202,7 @@ class WebMenu {
 	// Add focus class
 	_addFocus(el, className) {
 		const webItemFocusChild = el.querySelector('.web-item');
+
 		webItemFocusChild.classList.add('web-item-focus');
 		webItemFocusChild.scrollIntoView();
 	}
@@ -271,16 +272,20 @@ class WebMenu {
 		};
 
 		// Set focused element
-		updateWebListIndex();
-		if (this._webItemFocus) {
-			this._removeFocus(this._webItemFocus, 'web-item-focus');
-			updateItemFocusByKey();
-			this._addFocus(this._webItemFocus, 'web-item-focus');
-		} else {
-			this._webListIndex = 0;
-			this._webItemFocus = this._webMenuList.getElementsByTagName('li')[0];
-			this._addFocus(this._webItemFocus, 'web-item-focus');
+		const updateFocusedElement = () => {
+			updateWebListIndex();
+			if (this._webItemFocus) {
+				this._removeFocus(this._webItemFocus, 'web-item-focus');
+				updateItemFocusByKey();
+				this._addFocus(this._webItemFocus, 'web-item-focus');
+			} else {
+				this._webListIndex = 0;
+				this._webItemFocus = this._webMenuList.getElementsByTagName('li')[0];
+				this._addFocus(this._webItemFocus, 'web-item-focus');
+			}
 		}
+
+		updateFocusedElement();
 	}
 
 	_webMenuKeyDownEvent() {

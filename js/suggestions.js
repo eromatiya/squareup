@@ -126,7 +126,7 @@ class AutoSuggestion {
 		const callback = 'autocompleteCallback';
 		const searchQuery = String(this._searchBox.value);
 		window[String(callback)] = res => {
-			// Passed the suggestion object to process it
+			// Pass the suggestion object to process it
 			this._parseSuggestionsObject(res);
 		};
 
