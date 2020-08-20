@@ -31,6 +31,9 @@ class WebMenu {
 		// Enable inputs
 		this._disableWebMenuInputs(false);
 		
+		// Web menu button activated mode
+		this._webMenuButton.classList.add('active-content');
+
 		// Show web menu
 		this._webMenuScreen.classList.add('web-menu-show');
 		this._webMenuVisibility = !this._webMenuVisibility;
@@ -38,6 +41,7 @@ class WebMenu {
 		// Focus to input field
 		this._webMenuSearchBox.focus();
 
+		// Hide central bodu
 		centralBody.hideCentralBody();
 	}
 
@@ -66,6 +70,10 @@ class WebMenu {
 		// Disable inputs
 		this._disableWebMenuInputs(true);
 
+		// Web menu button activated mode
+		this._webMenuButton.classList.remove('active-content');
+
+		// Show central body
 		centralBody.showCentralBody();
 
 		this._webMenuVisibility = !this._webMenuVisibility;
