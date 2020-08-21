@@ -9,7 +9,7 @@ class PanelButtons {
 		const panelButton = document.createElement('div');
 		panelButton.id = `button-${id}`;
 		panelButton.className = className;
-		panelButton.addEventListener('click', () => {callback();});
+		if (callback) panelButton.addEventListener('click', () => {callback();});
 		return panelButton;
 	}
 
