@@ -3,6 +3,7 @@ class AutoSuggestion {
 		this._searchBox = document.querySelector('#search-box');
 		this._suggestionsUL = document.querySelector('#suggestions');
 		this._suggestionsContainer = document.querySelector('#suggestions-container');
+		this._searchBoxValue = null;
 	}
 
 	hideSuggestions() {
@@ -16,14 +17,25 @@ class AutoSuggestion {
 
 	_createButtonEvents(button) {
 
+		const suggestionFocus = () => {
+			if (!this._searchBoxValue) this._searchBoxValue = this._searchBox.value;
+			const suggestionButtons = Array.prototype.slice.call(document.querySelectorAll('button'));
+			const suggestionIndex = suggestionButtons.indexOf(document.activeElement) % suggestionButtons.length;
+			const suggestionButton = suggestionButtons[parseInt(suggestionIndex, 10)];
+			this._searchBox.value = suggestionButton.innerText;
+		}
+
 		const nextSuggestion = () => {
+			if (!this._searchBoxValue) this._searchBoxValue = this._searchBox.value;
 			const suggestionButtons = Array.prototype.slice.call(document.querySelectorAll('button'));
 			const suggestionIndex = (suggestionButtons.indexOf(document.activeElement) + 1) % suggestionButtons.length;
 			const suggestionButton = suggestionButtons[parseInt(suggestionIndex, 10)];
+			this._searchBox.value = suggestionButton.innerText;
 			suggestionButton.focus();
 		}
 
 		const previousSuggestion = () => {
+			if (!this._searchBoxValue) this._searchBoxValue = this._searchBox.value;
 			const suggestionButtons = Array.prototype.slice.call(document.querySelectorAll('button'));
 			let suggestionIndex = (suggestionButtons.indexOf(document.activeElement) - 1) % suggestionButtons.length;
 
@@ -32,11 +44,15 @@ class AutoSuggestion {
 			}
 
 			const suggestionButton = suggestionButtons[parseInt(suggestionIndex, 10)];
+			this._searchBox.value = suggestionButton.innerText;
 			suggestionButton.focus();
 		}
 
 		const focusSearchBox = () => {
-			this._searchBox.value = this._searchBox.value.slice(0, -1);
+			if (this._searchBoxValue) {
+				this._searchBox.value = this._searchBoxValue
+				this._searchBoxValue = null;
+			};
 			this._searchBox.focus();
 		}
 
@@ -51,6 +67,9 @@ class AutoSuggestion {
 			},
 			'Backspace': function() {
 				focusSearchBox();
+			},
+			'Tab': function() {
+				suggestionFocus();
 			},
 			'ArrowDown': function() {
 				nextSuggestion();
