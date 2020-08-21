@@ -68,6 +68,14 @@
 	- `g/polyfloat`
 	- `g/manilarome/polyfloat`
 
+## URL Redirects
+
+Searching a valid URL will redirect you to the said URL. Note that a protocol, `https://` and `http://` for example, is required.
+
++ `https://haveibeenpwned.com/` query is valid, so you will be redirected to [https://haveibeenpwned.com/](https://haveibeenpwned.com/).
++ `google.com` is not a valid URL, so it will search it on your default search engine.
++ `www.duckduckgo.com` is also invalid because it doesn't have a protocol.
+
 ## Settings and Customization
 
 ### Customizing color scheme
