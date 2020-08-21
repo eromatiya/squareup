@@ -28,9 +28,9 @@ class Clock {
 		}
 		
 		// 12-hour mode
+		midDay = (hour >= 12) ? 'PM' : 'AM';
 		hour = (hour === 0) ? 12 : ((hour > 12) ? (hour - 12) : hour);
 		hour = this._appendZero(hour);
-		midDay = (hour >= 12) ? 'PM' : 'AM';
 		this._clock.innerText = `${hour}:${min} ${midDay}`;
 	}
 
