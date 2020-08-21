@@ -54,5 +54,5 @@ li button.suggestion-button:active {
 }
 
 li button.suggestion-button:focus {
-	background: var(--button-hover);
+	background: var(--button-active);
 }

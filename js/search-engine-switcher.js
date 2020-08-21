@@ -34,27 +34,18 @@ class SearchEngineSwitcher {
 		let searchEngineName = searchEngineObject.name;
 		let searchEngineIcon = searchEngineObject.icon;
 
-		// Update search engine icon
 		this._buttonImageSearchEngine.style.backgroundImage = `url('assets/search-engines/${searchEngineIcon}.svg')`
 		this._buttonImageSearchEngine.style.backgroundSize = 'cover';
-
-		// Update search box placeholder
 		this._searchBox.placeholder = `Search with ${searchEngineName}`;
 	}
 
 	_incrementSearchEngineIndex() {
-		// Increment index while preventing it to go off limits
 		this._searchEnginesIndex = (this._searchEnginesIndex + 1) % this._searchEnginesArr.length;
 	}
 
 	searchEngineSwitch() {
-		// Update
 		this._updateSearchEngine();
-				
-		// Save search engine
 		this._localStorage.setItem('searchEngine', this._activeSearchEngine);
-
-		// Increment index
 		this._incrementSearchEngineIndex();
 	}
 
@@ -62,30 +53,18 @@ class SearchEngineSwitcher {
 		this._buttonSearchEngine.addEventListener(
 			'click',
 			() => {
-				// Switch search engine
 				this.searchEngineSwitch();
 			}
 		)
 	}
 
 	_init() {
-		// Create an array of search engine
 		this._createSearchEngineList();
-
-		// Load search engine
 		this._activeSearchEngine = this._localStorage.getItem('searchEngine') ||
 		this._searchEnginesArr[parseInt(0, 10)];
-
-		// Get index of default/saved search engine
 		this._searchEnginesIndex = this._searchEnginesArr.indexOf(this._activeSearchEngine);
-
-		// Update
 		this._updateSearchEngine();
-
-		// Increment index
 		this._incrementSearchEngineIndex();
-
-		// Register on click events
 		this._buttonSearchEngineClickEvent();
 	}
 }
