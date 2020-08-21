@@ -1,3 +1,6 @@
+// Instantiate all js scripts
+// Heirarchy is important here to avoid temporal dead zones
+
 // Instantiate config
 const config = new Config();
 
@@ -19,11 +22,14 @@ const searchQuerySend = new SearchQuerySend();
 // Instantiate autosuggestion
 const autoSuggestion = new AutoSuggestion();
 
-// Instantantiate web menu
-const webMenu = new WebMenu();
-
 // Instantiate search engine settings
 const searchEngineSwitcher = new SearchEngineSwitcher();
+
+// Instantiate autosuggestion
+const paramQuerySend = new ParamQuerySend();
+
+// Instantantiate web menu
+const webMenu = new WebMenu();
 
 // Instantiate theme switcher
 const themeSwitcher = new ThemeSwitcher();

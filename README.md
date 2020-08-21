@@ -76,6 +76,14 @@ Searching a valid URL will redirect you to the said URL. Note that a protocol, `
 + `google.com` is not a valid URL, so it will search it on your default search engine.
 + `www.duckduckgo.com` is also invalid because it doesn't have a protocol.
 
+## URL Query Parameters
+
+You can also pass a query by using the `q` parameter. You default search engine will be used.
+
++ `manilarome.github.io/squareup?q=how to build a nuclear reactor at home`
++ `manilarome.github.io/squareup?q=how to download more RAM in google play store`
++ `file:///PATH/TO/squareup/index.html?q=how to restore system32`
+
 ## Settings and Customization
 
 ### Customizing color scheme
