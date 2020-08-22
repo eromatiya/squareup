@@ -56,35 +56,40 @@ class Config {
 	getSearchEngines() {
 
 		const searchEngines = {
-			'google': {
-				name: 'Google',
-				prefix: 'https://www.google.com/search?q=',
-				icon: 'google'
+			'startpage': {
+				name: 'Startpage',
+				prefix: 'https://www.startpage.com/do/dsearch?query=',
+				icon: 'startpage'
 			},
-			'duckduckgo': {
-				name: 'Duckduckgo',
-				prefix: 'https://duckduckgo.com/?q=',
-				icon: 'duckduckgo'
+			'qwant': {
+				name: 'Qwant',
+				prefix: 'https://www.qwant.com/?q=',
+				icon: 'qwant'
 			},
 			'ecosia': {
 				name: 'Ecosia',
 				prefix: 'https://www.ecosia.org/search?q=',
 				icon: 'ecosia'
 			},
+			'duckduckgo': {
+				name: 'Duckduckgo',
+				prefix: 'https://duckduckgo.com/?q=',
+				icon: 'duckduckgo'
+			},
 			'yahoo': {
 				name: 'Yahoo',
 				prefix: 'https://search.yahoo.com/search?p=',
 				icon: 'yahoo'
 			},
+			'google': {
+				name: 'Google',
+				prefix: 'https://www.google.com/search?q=',
+				icon: 'google'
+			},
 			'bing': {
 				name: 'Bing',
 				prefix: 'https://www.bing.com/search?q=',
 				icon: 'bing'
-			},
-			'qwant': {
-				name: 'Qwant',
-				prefix: 'https://www.qwant.com/?q=',
-				icon: 'qwant'
 			}
 		};
 
@@ -357,6 +362,12 @@ class Config {
 				site: 'Qwant',
 				icon: 'qwant',
 				url: 'https://qwant.com/',
+				category: 'search engine'
+			},
+			{
+				site: 'Startpage',
+				icon: 'startpage',
+				url: 'https://startpage.com/',
 				category: 'search engine'
 			}
 		];

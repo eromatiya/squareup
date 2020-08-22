@@ -145,16 +145,17 @@ const quickSearchData = {
 
 #### Switch default search engine
 
-Google is the default search engine, if you want to change it to DuckDuckGo or something, just click the switcher button on the panel.
+Startpage is the default search engine, if you want to change it, just click the switcher button on the panel.
 
 Available search engines:
 
-+ Google
-+ Duckduckgo
-+ Ecosia
-+ Yahoo
-+ Bing
++ Startpage
 + Qwant
++ Ecosia
++ Duckduckgo
++ Yahoo
++ Google
++ Bing
 
 #### Customizing available search engines
 
