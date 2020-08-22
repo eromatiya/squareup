@@ -13,10 +13,20 @@ class Places {
 		return str.charAt(0).toUpperCase() + str.slice(1);
 	}
 
-	_sortCategory(obj) {
-		Array.from(obj.querySelectorAll('.category-body'))
+	_sortCategoryItems() {
+		const categoryList = document.querySelectorAll('.category-list');
+		for (let category of categoryList) {
+			Array.from(category.getElementsByTagName('li'))
+			.sort((a, b) => a.textContent.localeCompare(b.textContent))
+			.forEach(li => category.appendChild(li));
+		}
+	}
+
+	_sortCategory() {
+		Array.from(this._webMenuCategorized.querySelectorAll('.category-body'))
 			.sort((a, b) => a.id.localeCompare(b.id))
-			.forEach(li => obj.appendChild(li));
+			.forEach(li => this._webMenuCategorized.appendChild(li));
+		this._sortCategoryItems();
 	}
 
 	_createItemLI(url, siteID, icon, site, categoryID) {
@@ -40,6 +50,7 @@ class Places {
 			</a>
 			`
 		);
+
 		const categoryListULID = document.querySelector(`#category-list-${categoryID}`);
 		categoryListULID.appendChild(li);
 	}
@@ -74,12 +85,11 @@ class Places {
 				this._webMenuCategorized.appendChild(categoryBodyDivID);
 
 				this._createItemLI(url, siteID, icon, site, categoryID);
-
 			} else {
 				this._createItemLI(url, siteID, icon, site, categoryID);
 			}
 		}
 
-		this._sortCategory(this._webMenuCategorized);
+		this._sortCategory();
 	}
 }
