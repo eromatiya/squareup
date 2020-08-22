@@ -5,7 +5,7 @@
 ## [Live Demo](https://manilarome.github.io/squareup/)
 
 <p align='center'>
-	<img alt='squareup on light mode' src='scrot.webp'/>
+	<img alt='squareup' src='scrot.webp'/>
 	<br/>
 	<i>
 		squareup startpage
@@ -46,15 +46,17 @@
 	- `w/linux`
 	- `w/Javascript`
 
-+ `u/` + `search query` to search for an image/photo in unsplash.
++ `u/` + `search query` to search for an image/photo on unsplash.
 	- `u/nature`
 	- `u/technology`
 
 + `a/` + `search query` to search a product on amazon.
 	- `a/intel celeron`
+	- `a/windows 10 source code`
 
 + `e/` + `search query` to search a product on ebay.
 	- `e/pentium 4`
+	- `e/uranium core`
 
 + `y/` + `search query` to search a video on youtube.
 	- `y/how to build a nuclear reactor`
@@ -78,7 +80,7 @@ Searching a valid URL will redirect you to the said URL. Note that a protocol, `
 
 ## URL Query Parameters
 
-You can also pass a query by using the `q` parameter. You default search engine will be used.
+You can also pass a query by using the `q` parameter. Your default search engine will be used.
 
 + `manilarome.github.io/squareup?q=how to build a nuclear reactor at home`
 + `manilarome.github.io/squareup?q=how to download more RAM in google play store`
@@ -173,8 +175,25 @@ const searchEngines = {
 
 There are two clock modes available. `24-hour` and `12-hour`. Switch between clock modes by just clicking on the clock. Simple.
 
+### Other works
+
+Check my other works related to this startpage.
+
++ [blurredfox](https://github.com/manilarome/blurredfox/) - a gorgeous and modern firefox CSS theme.
++ [the-glorious-startpage](https://github.com/manilarome/the-glorious-startpage) - my very first startpage. Kinda bloaty and code is quite messy but still kinda works and looks gorgeous.
++ [the-glorious-dotfiles](https://github.com/manilarome/the-glorious-dotfiles) - a stash of my configurations.
+
 ### Important Note
 
-+ Make sure that javascript is enabled in your browser! My first plan was to make a javascript-less and a minimal homepage with just a bunch of CSS. But after adding the clock that requires javascript, I can't stop myself from adding stuff<sup>(bloat)</sup>.
++ Make sure that javascript is enabled in your browser!
 + Make sure to whitelist the startpage in `NoScript` and `Dark Mode Reader` extensions, if you have them installed/running.
 + Tested only on Firefox and Google Chrome.
+
+### TODOs
+
+Squareup will sit between minimal and bloated, so yeah. The items in this TODO list are the only one I'm planning to implement in this homepage. If there's still unchecked, feel free to contribute by submitting a PR!
+
+- [x] Day/Night switching
+- [x] Search engine switching
+- [x] Autosuggestion
+- [ ] Categorized Web Menu
