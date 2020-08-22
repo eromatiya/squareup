@@ -44,6 +44,10 @@
 	overflow-y: auto;
 }
 
+#web-menu-list-container.web-menu-category-mode {
+	display: block;
+}
+
 #web-menu-searchbox {
 	background: var(--base-secondary-bg);
 	color: var(--font-color);
@@ -66,6 +70,7 @@
 
 /* Unordered list */
 #web-menu-list {
+	/*CHECK*/
 	display: none;
 	list-style-type: none;
 	padding: 0;
@@ -190,4 +195,32 @@
 	#web-menu-list-container::-webkit-scrollbar {
 		display: none;
 	}
+}
+
+
+#web-menu-categorized {
+	list-style-type: none;
+	padding: 0;
+	margin: 0 auto;
+}
+
+.category-name {
+	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
+	font-weight: 700;
+	color: var(--font-color);
+}
+
+
+.category-list {
+	list-style-type: none;
+	padding: 0;
+	margin: 0 auto;
+	flex-grow: 1;
+	text-align: justify;
+	background: transparent;
+	overflow: hidden;
+}
+
+.category-list li {
+	display: inline-block;
 }

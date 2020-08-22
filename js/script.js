@@ -36,3 +36,6 @@ const themeSwitcher = new ThemeSwitcher();
 
 // Instantiate key events
 const documentKeyEvents = new DocumentKeyEvents();
+
+
+const places = new Places();

@@ -70,25 +70,26 @@
 			<div id='web-menu-searchbox-container'>
 				<input type='text' id='web-menu-searchbox' autocomplete='off' placeholder='Type to search'>
 			</div>
-			<div id='web-menu-list-container'>
-				<div id='web-menu-categorized'>
-					<div class='category-body' id='category-body-search-engine'>
-						<h2>Search Engine</h2>
+			<!-- DISPLAY DEPENDS ON MODE -->
+			<div id='web-menu-list-container' class='web-menu-category-mode'> 
+				<ul id='web-menu-categorized'>
+			<!-- 		<li class='category-body' id='category-body-search-engine'>
+						<h3 class='category-name' id='category-name-search-engine'>Search Engine</h3>
 						<ul class='category-list' id='category-list-search-engine'>
 							<li class='category-item' id='category-item-search-engine'>Search engine 1</li>
 							<li class='category-item' id='category-item-search-engine'>Search engine 2</li>
 							<li class='category-item' id='category-item-search-engine'>Search engine 3</li>
 						</ul>
-					</div>
-					<div class='category-body' id='category-body-design'>
-						<h2>Design</h2>
+					</li>
+					<li class='category-body' id='category-body-design'>
+						<h3 class='category-name' id='category-name-design'>Design</h3>
 						<ul class='category-list' id='category-list-search-engine'>
 							<li class='category-item' id='category-item-search-engine'>Design 1</li>
 							<li class='category-item' id='category-item-search-engine'>Design 2</li>
 							<li class='category-item' id='category-item-search-engine'>Design 3</li>
 						</ul>
-					</div>
-				</div>
+					</li> -->
+				</ul>
 				<ul id='web-menu-list'>
 					<!-- Below is the structure of an LI that will be generated in js/web-menu.js -->
 					<!-- 
@@ -124,6 +125,7 @@
 	<script src='js/central-body.js'></script>
 	<script src='js/panel-buttons.js'></script>
 	<script src='js/document-key-events.js'></script>
+	<script src='js/places.js'></script>
 
 	<script src='js/script.js'></script>
 </body>
