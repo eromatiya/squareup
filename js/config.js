@@ -131,7 +131,7 @@ class Config {
 				category: 'media'
 			},
 			{
-				site: 'GDrive',
+				site: 'Google Drive',
 				icon: 'gdrive',
 				url: 'https://drive.google.com/',
 				category: 'cloud'
@@ -170,7 +170,7 @@ class Config {
 				site: 'Duckduckgo',
 				icon: 'duckduckgo',
 				url: 'https://duckduckgo.com/',
-				category: 'development'
+				category: 'search engine'
 			},
 			{
 				site: 'Ecosia',
@@ -206,7 +206,13 @@ class Config {
 				site: 'Yahoo',
 				icon: 'yahoo',
 				url: 'https://mail.yahoo.com/',
-				category: 'social'
+				category: 'search engine'
+			},
+			{
+				site: 'Bing',
+				icon: 'bing',
+				url: 'https://bing.com',
+				category: 'search engine'
 			},
 			{
 				site: 'Material.io',

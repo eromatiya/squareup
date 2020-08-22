@@ -84,6 +84,10 @@ class WebMenu {
 			.forEach(li => this._webMenuList.appendChild(li));
 	}
 
+	_whiteSpaceToDash(str) {
+		return str.replace(/\s+/g, '-').toLowerCase();
+	}
+
 	// Create/generate web items
 	_populateWebMenu() {
 
@@ -99,9 +103,9 @@ class WebMenu {
 				'afterbegin',
 				`
 				<a class='web-menu-link' href='${url}' tabindex='-1'>
-					<div class='web-item' id='${'id' + site}'>
+					<div class='web-item' id='web-item-${this._whiteSpaceToDash(site)}'>
 						<div class='web-item-container'>
-							<div class='webItemBody'>
+							<div class='web-item-body'>
 								<div class='web-item-icon-container'>
 									<div class='web-item-icon' style='background-image: url("assets/webcons/${icon}.svg");'></div>
 								</div>
