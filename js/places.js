@@ -2,16 +2,22 @@ class Places {
 	constructor() {
 		this._webSites = config.getWebSites();
 		this._webMenuScreen = document.querySelector('#web-menu');
+		this._webMenuList = document.querySelector('#web-menu-list');
 		this._webMenuCategorized = document.querySelector('#web-menu-categorized');
 		this._webMenuSearchBox = document.querySelector('#web-menu-searchbox');
+		this._webMenuModeSwitcher = document.querySelector('#web-menu-mode-switcher');
+
 		this._webItemFocus;
 		this._webListIndex = 0;
 		this._webMenuCategoryLIsArr = [];
-		
+		this._webMenuCategoryMode = true;
+
 		this._populateCategories();
 		this._getFirstCategoryItem();
 		this._webMenuSearchBoxKeyUpEvent();
 		this._webMenuKeyDownEvent();
+		this._webMenuModeSwitcherClickEvent();
+
 	}
 
 	_whiteSpaceToDash(str) {
@@ -264,5 +270,44 @@ class Places {
 			},
 			false
 		);
+	}
+
+
+	// Sort list alphabetically
+	_sortList() {
+		Array.from(this._webMenuList.getElementsByTagName('li'))
+			.sort((a, b) => a.textContent.localeCompare(b.textContent))
+			.forEach(li => this._webMenuList.appendChild(li));
+	}
+
+	_switchToListMode() {
+		for (let i = 0; i < this._webMenuCategoryLIsArr.length; i++) {
+			this._webMenuList.appendChild(this._webMenuCategoryLIsArr[i]);
+		}
+		// this._sortList();
+
+		this._webMenuList.classList.remove('web-menu-list-hide');
+		this._webMenuCategorized.classList.add('web-menu-categorized-hide');
+	}
+
+	_switchToCategoryMode() {
+		for (let i = 0; i < this._webMenuCategoryLIsArr.length - 1; i++) {
+			const itemID = this._webMenuCategoryLIsArr[i].id;
+			const categoryID = this._webMenuCategoryLIsArr[i].id.replace('web-menu-category-', '');
+			const category = document.querySelector(`#category-list-${categoryID}`);
+			category.appendChild(this._webMenuCategoryLIsArr[i]);
+		}
+
+		this._webMenuList.classList.add('web-menu-list-hide');
+		this._webMenuCategorized.classList.remove('web-menu-categorized-hide');
+	}
+
+	_webMenuModeSwitcherClickEvent() {
+		this._webMenuModeSwitcher.addEventListener(
+			'click',
+			e => {
+				this._switchToListMode();
+			}
+		);	
 	}
 }

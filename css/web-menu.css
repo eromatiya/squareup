@@ -70,14 +70,17 @@
 
 /* Unordered list */
 #web-menu-list {
-	/*CHECK*/
-	display: none;
 	list-style-type: none;
 	padding: 0;
 	margin: 0 auto;
 	flex-grow: 1;
 	text-align: justify;
 	background: transparent;
+}
+
+
+#web-menu-list.web-menu-list-hide {
+	display: none;
 }
 
 /* List */
@@ -204,6 +207,10 @@
 	margin: 0 auto;
 }
 
+#web-menu-categorized.web-menu-categorized-hide {
+	display: none;
+}
+
 .category-name {
 	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
 	font-weight: 700;
@@ -290,3 +297,6 @@
 	display: block;
 }
 
+#web-menu-mode-switcher.category-mode {
+	background: var(--button-active);
+}
