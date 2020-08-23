@@ -95,7 +95,7 @@ class Places {
 			<a class='web-menu-link' href='${url}' tabindex='-1'>
 				<div class='web-item' id='${'id-' + siteID}'>
 					<div class='web-item-container'>
-						<div class='webItemBody'>
+						<div class='web-item-body'>
 							<div class='web-item-icon-container'>
 								<div class='web-item-icon' style='background-image: url("assets/webcons/${icon}.svg");'></div>
 							</div>
@@ -158,6 +158,8 @@ class Places {
 			const icon = webData.icon;
 			const url = webData.url;
 			const category = webData.category;
+
+			const siteID = this._whiteSpaceToDash(site);
 			const categoryID = this._whiteSpaceToDash(category);
 
 			const li = document.createElement('li');
@@ -169,9 +171,9 @@ class Places {
 				'afterbegin',
 				`
 				<a class='web-menu-link' href='${url}' tabindex='-1'>
-					<div class='web-item' id='${'id' + site}'>
+					<div class='web-item' id='id-${siteID}'>
 						<div class='web-item-container'>
-							<div class='webItemBody'>
+							<div class='web-item-body'>
 								<div class='web-item-icon-container'>
 									<div class='web-item-icon' style='background-image: url("assets/webcons/${icon}.svg");'></div>
 								</div>
@@ -369,40 +371,6 @@ class Places {
 		this._webMenuModeSwitcher.classList.remove('category-mode');
 	}
 
-	// Create categories if doesn't exist
-	// _createCategories() {
-	// 	for (let webData of this._webSites) {
-	// 		const site = webData.site;
-	// 		const category = webData.category;
-	// 		const icon = webData.icon;
-	// 		const url = webData.url;
-
-	// 		const categoryID = this._whiteSpaceToDash(category);
-
-	// 		let categoryBodyDivID = document.querySelector(`#category-body-${categoryID}`);
-	// 		if (categoryBodyDivID === null) {
-	// 			categoryBodyDivID = document.createElement('li');
-	// 			categoryBodyDivID.className = `category-body`;
-	// 			categoryBodyDivID.id = `category-body-${categoryID}`;
-
-	// 			const categoryNameH3ID = document.createElement('h3');
-	// 			categoryNameH3ID.className = `category-name`;
-	// 			categoryNameH3ID.id = `category-name-${categoryID}`;
-	// 			categoryNameH3ID.innerText = `${this._capitalizeString(category)}`;
-
-	// 			const categoryListULID = document.createElement('ul');
-	// 			categoryListULID.className = `category-list`;
-	// 			categoryListULID.id = `category-list-${categoryID}`;
-
-	// 			categoryBodyDivID.appendChild(categoryNameH3ID);
-	// 			categoryBodyDivID.appendChild(categoryListULID);
-	// 			this._webMenuCategorized.appendChild(categoryBodyDivID);
-	// 		}
-	// 	}
-
-	// 	this._sortCategories();
-	// }
-
 	// Switch to category mode
 	_switchToCategoryMode() {
 
@@ -416,15 +384,12 @@ class Places {
 			// Check if the LI's parent, the category-body-{category-name}, exists
 			let categoryBodyDivID = document.querySelector(`#category-body-${categoryID}`);
 			if (categoryBodyDivID) {
+
 				const categoryUL = document.querySelector(`#category-list-${categoryID}`);
 				categoryUL.appendChild(this._webMenuCategoryLIsArr[i]);
+
 			} else {
 
-				// Create category if it doesn't exist 
-				// Useful when you started using list mode then switching to category mode
-				// this._createCategories();
-				// categoryBody = document.querySelector(`#category-list-${categoryID}`);
-				// categoryBody.appendChild(this._webMenuCategoryLIsArr[i]);
 				categoryBodyDivID = document.createElement('li');
 				categoryBodyDivID.className = `category-body`;
 				categoryBodyDivID.id = `category-body-${categoryID}`;
@@ -442,9 +407,11 @@ class Places {
 				categoryBodyDivID.appendChild(categoryNameH3ID);
 				categoryBodyDivID.appendChild(categoryListULID);
 				this._webMenuCategorized.appendChild(categoryBodyDivID);
+
 			}
 		}
 
+		this._sortCategories();
 		this._webMenuList.classList.add('web-menu-list-hide');
 		this._webMenuCategorized.classList.remove('web-menu-categorized-hide');
 		this._webMenuModeSwitcher.classList.add('category-mode');
@@ -456,8 +423,10 @@ class Places {
 			e => {
 				if (this._webMenuCategoryMode) {
 					this._switchToListMode();
+					this._webItemFocus.scrollIntoView();
 				} else {
 					this._switchToCategoryMode();
+					this._webItemFocus.scrollIntoView();
 				}
 				this._webMenuCategoryMode = !this._webMenuCategoryMode;
 			}
