@@ -281,10 +281,6 @@
 	cursor: pointer;
 }
 
-#web-menu-mode-switcher.category-mode {
-	background: var(--button-active);
-}
-
 #web-menu-mode-switcher:hover {
 	background: var(--button-hover);
 }
@@ -298,9 +294,18 @@
 }
 
 #web-menu-mode-switcher-img {
+	background-image: url('../assets/buttons/alphabetical.svg');
+	background-size: cover;
 	filter: var(--image-invert);
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
-	display: block;
 }
+
+#web-menu-mode-switcher-img.category-mode {
+	background-image: url('../assets/buttons/categories.svg');
+	background-size: cover;
+	filter: var(--image-invert);
+	width: 100%;
+	height: 100%;
+}
+

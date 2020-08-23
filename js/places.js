@@ -6,6 +6,7 @@ class Places {
 		this._webMenuCategorized = document.querySelector('#web-menu-categorized');
 		this._webMenuSearchBox = document.querySelector('#web-menu-searchbox');
 		this._webMenuModeSwitcher = document.querySelector('#web-menu-mode-switcher');
+		this._webMenuModeSwitcherImage = document.querySelector('#web-menu-mode-switcher-img');
 
 		this._webItemFocus;
 		this._webListIndex = 0;
@@ -368,7 +369,7 @@ class Places {
 
 		this._webMenuList.classList.remove('web-menu-list-hide');
 		this._webMenuCategorized.classList.add('web-menu-categorized-hide');
-		this._webMenuModeSwitcher.classList.remove('category-mode');
+		this._webMenuModeSwitcherImage.classList.remove('category-mode');
 	}
 
 	// Switch to category mode
@@ -414,7 +415,7 @@ class Places {
 		this._sortCategories();
 		this._webMenuList.classList.add('web-menu-list-hide');
 		this._webMenuCategorized.classList.remove('web-menu-categorized-hide');
-		this._webMenuModeSwitcher.classList.add('category-mode');
+		this._webMenuModeSwitcherImage.classList.add('category-mode');
 	}
 
 	_webMenuModeSwitcherClickEvent() {
