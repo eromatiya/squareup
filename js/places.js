@@ -2,7 +2,12 @@ class Places {
 	constructor() {
 		this._webSites = config.getWebSites();
 		this._webMenuCategorized = document.querySelector('#web-menu-categorized');
+		this._webMenuSearchBox = document.querySelector('#web-menu-searchbox');
+		this._webItemFocus;
+		this._webListIndex = 0;
 		this._populateCategories();
+		this._getFirstItem();
+		this._webMenuSearchBoxKeyUpEvent();
 	}
 
 	_whiteSpaceToDash(str) {
@@ -91,5 +96,78 @@ class Places {
 		}
 
 		this._sortCategory();
+	}
+
+	_getFirstItem() {
+		const uls = document.querySelectorAll('.category-list');
+		let lis = [];
+		for (let z = 0; z < uls.length; z++) {
+			let ulCategoryItems = uls[z].getElementsByTagName('li');
+			for (let y = 0; y < ulCategoryItems.length; y++) {
+				lis.push(ulCategoryItems[y]);
+			}
+		}
+
+		this._webItemFocus = lis[0];
+		const webItemFocusChildren = this._webItemFocus.querySelector('.web-item');
+		webItemFocusChildren.classList.add('web-item-focus');
+	}
+
+	_filterWebList() {
+
+		let input, filter, uls, lis, a, i, txtValue;
+		
+		input = this._webMenuSearchBox;
+		filter = input.value.toUpperCase();
+		uls = document.querySelectorAll('.category-list');
+		// lis = uls.querySelectorAll('.category-item');
+		// console.log(uls);
+
+		lis = [];
+
+		for (let z = 0; z < uls.length; z++) {
+			let ulCategoryItems = uls[z].getElementsByTagName('li');
+			for (let y = 0; y < ulCategoryItems.length; y++) {
+				lis.push(ulCategoryItems[y]);
+			}
+		}
+
+		// for (let s = 0; s < lis.length; s++) {
+			// lis[s].style.backgroundColor = '#0f0';
+		// }
+
+		// Object.keys(lis).forEach(key => {
+			// console.log(key, obj[key]);
+			// lis[key].style.backgroundColor = '#ff0000';
+		// });
+		
+		// Loop through all list items, and focus if matches the search query
+		for (let i = 0; i < lis.length; i++) {
+
+			a = lis[parseInt(i, 10)].getElementsByClassName('web-item-name')[0];
+			txtValue = a.textContent || a.innerText;
+
+			if (txtValue.toUpperCase().indexOf(filter) !== -1) {
+			// if (txtValue.toUpperCase().fuzzy(filter, 1) === true) {
+				const oldWebItemFocus = this._webItemFocus;
+				const oldWebItemFocusChild = oldWebItemFocus.querySelector('.web-item');
+				oldWebItemFocusChild.classList.remove('web-item-focus');
+				this._webItemFocus = lis[parseInt(i, 10)];
+				this._webListIndex = i;
+				const webItemFocusChild = this._webItemFocus.querySelector('.web-item');
+				webItemFocusChild.classList.add('web-item-focus');
+				this._webItemFocus.scrollIntoView();
+			}
+		}
+	}
+
+	_webMenuSearchBoxKeyUpEvent() {
+		this._webMenuSearchBox.addEventListener(
+			'keyup',
+			e => {
+				if (e.key.length > 1) return;
+				this._filterWebList();
+			}
+		);
 	}
 }

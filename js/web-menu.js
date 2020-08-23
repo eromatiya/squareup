@@ -345,11 +345,11 @@ class WebMenu {
 	}
 
 	_init() {
-		this._fuzzySearch();
-		this._disableWebMenuInputs(true);
-		this._webMenuSearchBoxKeyDownEvent();
-		this._webMenuSearchBoxKeyUpEvent();
-		this._webMenuKeyDownEvent();
-		this._webMenuButtonClickEvent();
+		// this._fuzzySearch();
+		// this._disableWebMenuInputs(true);
+		// this._webMenuSearchBoxKeyDownEvent();
+		// this._webMenuSearchBoxKeyUpEvent();
+		// this._webMenuKeyDownEvent();
+		// this._webMenuButtonClickEvent();
 	}
 }
