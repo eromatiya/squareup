@@ -284,29 +284,82 @@ class Places {
 		for (let i = 0; i < this._webMenuCategoryLIsArr.length; i++) {
 			this._webMenuList.appendChild(this._webMenuCategoryLIsArr[i]);
 		}
-		// this._sortList();
+		this._sortList();
 
 		this._webMenuList.classList.remove('web-menu-list-hide');
 		this._webMenuCategorized.classList.add('web-menu-categorized-hide');
+		this._webMenuModeSwitcher.classList.remove('category-mode');
+	}
+
+
+	_createCategories() {
+		for (let webData of this._webSites) {
+			const site = webData.site;
+			const category = webData.category;
+			const icon = webData.icon;
+			const url = webData.url;
+
+			const categoryID = this._whiteSpaceToDash(category);
+
+			let categoryBodyDivID = document.querySelector(`#category-body-${categoryID}`);
+			if (categoryBodyDivID === null) {
+				categoryBodyDivID = document.createElement('li');
+				categoryBodyDivID.className = `category-body`;
+				categoryBodyDivID.id = `category-body-${categoryID}`;
+
+				const categoryNameH3ID = document.createElement('h3');
+				categoryNameH3ID.className = `category-name`;
+				categoryNameH3ID.id = `category-name-${categoryID}`;
+				categoryNameH3ID.innerText = `${this._capitalizeString(category)}`;
+
+				const categoryListULID = document.createElement('ul');
+				categoryListULID.className = `category-list`;
+				categoryListULID.id = `category-list-${categoryID}`;
+
+				categoryBodyDivID.appendChild(categoryNameH3ID);
+				categoryBodyDivID.appendChild(categoryListULID);
+				this._webMenuCategorized.appendChild(categoryBodyDivID);
+			}
+		}
+
+		this._sortCategories();
+		this._getCategoryLIs();
 	}
 
 	_switchToCategoryMode() {
 		for (let i = 0; i < this._webMenuCategoryLIsArr.length - 1; i++) {
 			const itemID = this._webMenuCategoryLIsArr[i].id;
 			const categoryID = this._webMenuCategoryLIsArr[i].id.replace('web-menu-category-', '');
-			const category = document.querySelector(`#category-list-${categoryID}`);
-			category.appendChild(this._webMenuCategoryLIsArr[i]);
+			
+			// Check if category-body-CATEGORY exists, main LIs
+			let categoryBody = document.querySelector(`#category-body-${categoryID}`);
+			if (categoryBody) {
+				const category = document.querySelector(`#category-list-${categoryID}`);
+				category.appendChild(this._webMenuCategoryLIsArr[i]);
+			} else {
+				// Create category LIs if doesn't exist 
+				// Useful when you started using list mode then switching to category mode
+				this._createCategories();
+				const category = document.querySelector(`#category-list-${categoryID}`);
+				category.appendChild(this._webMenuCategoryLIsArr[i]);
+			}
 		}
 
 		this._webMenuList.classList.add('web-menu-list-hide');
 		this._webMenuCategorized.classList.remove('web-menu-categorized-hide');
+		this._webMenuModeSwitcher.classList.add('category-mode');
 	}
 
 	_webMenuModeSwitcherClickEvent() {
 		this._webMenuModeSwitcher.addEventListener(
 			'click',
 			e => {
-				this._switchToListMode();
+				if (this._webMenuCategoryMode) {
+					this._switchToListMode();
+				} else {
+					this._switchToCategoryMode();
+				}
+				this._webMenuCategoryMode = !this._webMenuCategoryMode;
 			}
 		);	
 	}
