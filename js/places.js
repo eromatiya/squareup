@@ -1,5 +1,6 @@
 class Places {
 	constructor() {
+		this._localStorage = window.localStorage;
 		this._webSites = config.getWebSites();
 		this._webMenuScreen = document.querySelector('#web-menu');
 		this._webMenuList = document.querySelector('#web-menu-list');
@@ -11,7 +12,7 @@ class Places {
 		this._webItemFocus;
 		this._webListIndex = 0;
 		this._webMenuCategoryLIsArr = [];
-		this._webMenuCategoryMode = false;
+		this._webMenuCategoryMode;
 
 		this._init();
 	}
@@ -430,17 +431,21 @@ class Places {
 					this._webItemFocus.scrollIntoView();
 				}
 				this._webMenuCategoryMode = !this._webMenuCategoryMode;
+				this._localStorage.setItem('categoryMode', JSON.stringify(this._webMenuCategoryMode));
 			}
 		);	
 	}
 
 	_init() {
+		this._webMenuCategoryMode = JSON.parse(this._localStorage.getItem('categoryMode')) || false;
 		if (this._webMenuCategoryMode) {
 			this._populateCategories();
 			this._getFirstCategoryItem();
+			this._webMenuModeSwitcherImage.classList.add('category-mode');
 		} else {
 			this._populateList();
 			this._getFirstListItem();
+			this._webMenuModeSwitcherImage.classList.remove('category-mode');
 		}
 		
 		// Fuzzy search
