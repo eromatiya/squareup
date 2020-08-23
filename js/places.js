@@ -10,7 +10,7 @@ class Places {
 		this._webItemFocus;
 		this._webListIndex = 0;
 		this._webMenuCategoryLIsArr = [];
-		this._webMenuCategoryMode = true;
+		this._webMenuCategoryMode = false;
 
 		this._init();
 	}
@@ -150,8 +150,57 @@ class Places {
 		this._sortCategories();
 	}
 
+	_populateList() {
+
+		// Generate a list
+		for (let webData of this._webSites) {
+			const site = webData.site;
+			const icon = webData.icon;
+			const url = webData.url;
+			const category = webData.category;
+			const categoryID = this._whiteSpaceToDash(category);
+
+			const li = document.createElement('li');
+			li.className = `web-menu-list-item web-menu-categorized`;
+			li.id = `web-menu-category-${categoryID}`;
+
+			// Generate web item/li child
+			li.insertAdjacentHTML(
+				'afterbegin',
+				`
+				<a class='web-menu-link' href='${url}' tabindex='-1'>
+					<div class='web-item' id='${'id' + site}'>
+						<div class='web-item-container'>
+							<div class='webItemBody'>
+								<div class='web-item-icon-container'>
+									<div class='web-item-icon' style='background-image: url("assets/webcons/${icon}.svg");'></div>
+								</div>
+								<div class='web-item-name'>${site}</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				`
+			);
+
+			// this._createWebItemCallback(li, url);
+			this._webMenuList.appendChild(li);
+		}
+
+		this._sortList();
+	}
+
 	_getFirstCategoryItem() {
 		this._webItemFocus = this._webMenuCategoryLIsArr[0];
+		const webItemFocusChildren = this._webItemFocus.querySelector('.web-item');
+		webItemFocusChildren.classList.add('web-item-focus');
+	}
+
+	_getFirstListItem() {
+		const ul = this._webMenuList;
+		const li = ul.getElementsByTagName('li');
+
+		this._webItemFocus = li[0];
 		const webItemFocusChildren = this._webItemFocus.querySelector('.web-item');
 		webItemFocusChildren.classList.add('web-item-focus');
 	}
@@ -305,6 +354,7 @@ class Places {
 		Array.from(this._webMenuList.getElementsByTagName('li'))
 			.sort((a, b) => a.textContent.localeCompare(b.textContent))
 			.forEach(li => this._webMenuList.appendChild(li));
+		this._getListLIs();
 	}
 
 	// Switch to list mode
@@ -320,17 +370,61 @@ class Places {
 	}
 
 	// Create categories if doesn't exist
-	_createCategories() {
-		for (let webData of this._webSites) {
-			const site = webData.site;
-			const category = webData.category;
-			const icon = webData.icon;
-			const url = webData.url;
+	// _createCategories() {
+	// 	for (let webData of this._webSites) {
+	// 		const site = webData.site;
+	// 		const category = webData.category;
+	// 		const icon = webData.icon;
+	// 		const url = webData.url;
 
+	// 		const categoryID = this._whiteSpaceToDash(category);
+
+	// 		let categoryBodyDivID = document.querySelector(`#category-body-${categoryID}`);
+	// 		if (categoryBodyDivID === null) {
+	// 			categoryBodyDivID = document.createElement('li');
+	// 			categoryBodyDivID.className = `category-body`;
+	// 			categoryBodyDivID.id = `category-body-${categoryID}`;
+
+	// 			const categoryNameH3ID = document.createElement('h3');
+	// 			categoryNameH3ID.className = `category-name`;
+	// 			categoryNameH3ID.id = `category-name-${categoryID}`;
+	// 			categoryNameH3ID.innerText = `${this._capitalizeString(category)}`;
+
+	// 			const categoryListULID = document.createElement('ul');
+	// 			categoryListULID.className = `category-list`;
+	// 			categoryListULID.id = `category-list-${categoryID}`;
+
+	// 			categoryBodyDivID.appendChild(categoryNameH3ID);
+	// 			categoryBodyDivID.appendChild(categoryListULID);
+	// 			this._webMenuCategorized.appendChild(categoryBodyDivID);
+	// 		}
+	// 	}
+
+	// 	this._sortCategories();
+	// }
+
+	// Switch to category mode
+	_switchToCategoryMode() {
+
+		// Transfer all web items(LIs) to category mode
+		for (let i = 0; i < this._webMenuCategoryLIsArr.length; i++) {
+
+			const itemID = this._webMenuCategoryLIsArr[i].id;
+			const category = itemID.replace('web-menu-category-', '');
 			const categoryID = this._whiteSpaceToDash(category);
-
+			
+			// Check if the LI's parent, the category-body-{category-name}, exists
 			let categoryBodyDivID = document.querySelector(`#category-body-${categoryID}`);
-			if (categoryBodyDivID === null) {
+			if (categoryBodyDivID) {
+				const categoryUL = document.querySelector(`#category-list-${categoryID}`);
+				categoryUL.appendChild(this._webMenuCategoryLIsArr[i]);
+			} else {
+
+				// Create category if it doesn't exist 
+				// Useful when you started using list mode then switching to category mode
+				// this._createCategories();
+				// categoryBody = document.querySelector(`#category-list-${categoryID}`);
+				// categoryBody.appendChild(this._webMenuCategoryLIsArr[i]);
 				categoryBodyDivID = document.createElement('li');
 				categoryBodyDivID.className = `category-body`;
 				categoryBodyDivID.id = `category-body-${categoryID}`;
@@ -343,38 +437,11 @@ class Places {
 				const categoryListULID = document.createElement('ul');
 				categoryListULID.className = `category-list`;
 				categoryListULID.id = `category-list-${categoryID}`;
+				categoryListULID.appendChild(this._webMenuCategoryLIsArr[i]);
 
 				categoryBodyDivID.appendChild(categoryNameH3ID);
 				categoryBodyDivID.appendChild(categoryListULID);
 				this._webMenuCategorized.appendChild(categoryBodyDivID);
-			}
-		}
-
-		this._sortCategories();
-	}
-
-	// Switch to category mode
-	_switchToCategoryMode() {
-
-		// Transfer all web items(LIs) to category mode
-		for (let i = 0; i < this._webMenuCategoryLIsArr.length - 1; i++) {
-			const itemID = this._webMenuCategoryLIsArr[i].id;
-			const categoryID = this._webMenuCategoryLIsArr[i].id.replace('web-menu-category-', '');
-			
-			// Check if the LI's parent, the category-body-{category-name}, exists
-			let categoryBody = document.querySelector(`#category-body-${categoryID}`);
-			if (categoryBody) {
-
-				// Append to category
-				const category = document.querySelector(`#category-list-${categoryID}`);
-				category.appendChild(this._webMenuCategoryLIsArr[i]);
-			} else {
-
-				// Create category if it doesn't exist 
-				// Useful when you started using list mode then switching to category mode
-				this._createCategories();
-				const category = document.querySelector(`#category-list-${categoryID}`);
-				category.appendChild(this._webMenuCategoryLIsArr[i]);
 			}
 		}
 
@@ -401,6 +468,9 @@ class Places {
 		if (this._webMenuCategoryMode) {
 			this._populateCategories();
 			this._getFirstCategoryItem();
+		} else {
+			this._populateList();
+			this._getFirstListItem();
 		}
 		
 		// Fuzzy search
