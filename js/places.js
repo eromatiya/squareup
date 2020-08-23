@@ -58,9 +58,9 @@ class Places {
 
 	_getListLIs() {
 		const ul = this._webMenuList;
-		const li = ul.getElementsByTagName('li');
-		for (let li of ul) {
-			this._webMenuCategoryLIsArr.push(li);
+		const lis = ul.getElementsByTagName('li');
+		for (let z = 0; z < lis.length; z++) {
+			this._webMenuCategoryLIsArr.push(lis[z]);
 		}
 	}
 
