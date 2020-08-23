@@ -1,13 +1,16 @@
 class Places {
 	constructor() {
 		this._webSites = config.getWebSites();
+		this._webMenuScreen = document.querySelector('#web-menu');
 		this._webMenuCategorized = document.querySelector('#web-menu-categorized');
 		this._webMenuSearchBox = document.querySelector('#web-menu-searchbox');
 		this._webItemFocus;
 		this._webListIndex = 0;
+		this._webMenuCategoryLIsArr = [];
 		this._populateCategories();
 		this._getFirstCategoryItem();
 		this._webMenuSearchBoxKeyUpEvent();
+		this._webMenuKeyDownEvent();
 	}
 
 	_whiteSpaceToDash(str) {
@@ -62,6 +65,16 @@ class Places {
 		categoryListULID.appendChild(li);
 	}
 
+	_getCategoryLIs() {
+		const uls = document.querySelectorAll('.category-list');
+		for (let z = 0; z < uls.length; z++) {
+			let ulCategoryItems = uls[z].getElementsByTagName('li');
+			for (let y = 0; y < ulCategoryItems.length; y++) {
+				this._webMenuCategoryLIsArr.push(ulCategoryItems[y]);
+			}
+		}
+	}
+
 	_populateCategories() {
 		for (let webData of this._webSites) {
 			const site = webData.site;
@@ -98,46 +111,27 @@ class Places {
 		}
 
 		this._sortCategories();
+		this._getCategoryLIs();
 	}
 
 	_getFirstCategoryItem() {
-		const uls = document.querySelectorAll('.category-list');
-		let lis = [];
-		for (let z = 0; z < uls.length; z++) {
-			let ulCategoryItems = uls[z].getElementsByTagName('li');
-			for (let y = 0; y < ulCategoryItems.length; y++) {
-				lis.push(ulCategoryItems[y]);
-			}
-		}
-
-		this._webItemFocus = lis[0];
+		this._webItemFocus = this._webMenuCategoryLIsArr[0];
 		const webItemFocusChildren = this._webItemFocus.querySelector('.web-item');
 		webItemFocusChildren.classList.add('web-item-focus');
 	}
 
 	_filterWebList() {
 
-		let input, filter, uls, lis, a, i, txtValue;
+		let input, filter, uls, li, a, i, txtValue;
 		
 		input = this._webMenuSearchBox;
 		filter = input.value.toUpperCase();
-		uls = document.querySelectorAll('.category-list');
-		// lis = uls.querySelectorAll('.category-item');
-		// console.log(uls);
-
-		lis = [];
-
-		for (let z = 0; z < uls.length; z++) {
-			let ulCategoryItems = uls[z].getElementsByTagName('li');
-			for (let y = 0; y < ulCategoryItems.length; y++) {
-				lis.push(ulCategoryItems[y]);
-			}
-		}
+		li = this._webMenuCategoryLIsArr;
 		
 		// Loop through all list items, and focus if matches the search query
-		for (let i = 0; i < lis.length; i++) {
+		for (let i = 0; i < li.length; i++) {
 
-			a = lis[parseInt(i, 10)].getElementsByClassName('web-item-name')[0];
+			a = li[parseInt(i, 10)].getElementsByClassName('web-item-name')[0];
 			txtValue = a.textContent || a.innerText;
 
 			if (txtValue.toUpperCase().indexOf(filter) !== -1) {
@@ -145,7 +139,7 @@ class Places {
 				const oldWebItemFocus = this._webItemFocus;
 				const oldWebItemFocusChild = oldWebItemFocus.querySelector('.web-item');
 				oldWebItemFocusChild.classList.remove('web-item-focus');
-				this._webItemFocus = lis[parseInt(i, 10)];
+				this._webItemFocus = li[parseInt(i, 10)];
 				this._webListIndex = i;
 				const webItemFocusChild = this._webItemFocus.querySelector('.web-item');
 				webItemFocusChild.classList.add('web-item-focus');
@@ -161,6 +155,113 @@ class Places {
 				if (e.key.length > 1) return;
 				this._filterWebList();
 			}
+		);
+	}
+
+	// Remove focus class
+	_removeFocus(el, className) {
+		const oldWebItemFocus = el.querySelector('.web-item');
+		oldWebItemFocus.classList.remove('web-item-focus');
+	}
+
+	// Add focus class
+	_addFocus(el, className) {
+		const webItemFocusChild = el.querySelector('.web-item');
+
+		webItemFocusChild.classList.add(className);
+		webItemFocusChild.scrollIntoView();
+	}
+
+	_navigateWithArrows(key, len) {
+
+		// Assign constant variables to key codes
+		const [right, left, down, up] = [39, 37, 40, 38];
+
+		// Calculate screen width - Allows up/down navigation
+		const getIndexByWindowWidth = () => {
+			if (window.innerWidth <= 580) { return 1; }
+
+			// Width of elements (<li> and scrollbar) in pixels
+			const menuItemWidth = 138;
+			const scrollBarWidth = 10;
+
+			// Get viewport width
+			const vw = unit => window.innerWidth * (unit / 100);
+			
+			// Gets the number of columns by dividing the 
+			// screen width minus the padding, scroll width and 
+			// average of menu item width by the menu item width
+			const containerWindow = ((window.innerWidth - (menuItemWidth / 2) -
+				scrollBarWidth - vw(24)) / menuItemWidth);
+			return Math.round(containerWindow);
+		};
+
+		// Update focused item element
+		const changeItemFocus = (condition, overFlowIndex) => {
+			const next = this._webMenuCategoryLIsArr[this._webListIndex];
+			if(typeof next !== 'undefined' && condition) {			
+				this._webItemFocus = next;
+			} else {
+				this._webListIndex = overFlowIndex;
+				this._webItemFocus = this._webMenuCategoryLIsArr[parseInt(overFlowIndex, 10)];
+			}
+		};
+
+		const updateItemFocusByKey = () => {
+			if (key === right) {
+				return changeItemFocus((this._webListIndex <= len), 0);
+			} else if (key === left) {
+				return changeItemFocus((this._webListIndex >= 0), len);
+			} else if (key === up) {
+				return changeItemFocus((this._webListIndex >= 0), len);
+			} else if (key === down) {
+				return changeItemFocus((this._webListIndex <= len), 0);
+			}
+		};
+
+		// Determine the index position by key
+		const updateWebListIndex = () => {
+			if (key === right) {
+				this._webListIndex++;
+			} else if (key === left) {
+				this._webListIndex--;
+			} else if (key === up) {
+				this._webListIndex = this._webListIndex - getIndexByWindowWidth();
+			} else if (key === down) {
+				this._webListIndex = this._webListIndex + getIndexByWindowWidth();
+			} else {
+				return;
+			}
+			this._webMenuSearchBox.value = '';
+		};
+
+		// Set focused element
+		const updateFocusedElement = () => {
+			
+			updateWebListIndex();
+			if (this._webItemFocus) {
+				this._removeFocus(this._webItemFocus, 'web-item-focus');
+				updateItemFocusByKey();
+				this._addFocus(this._webItemFocus, 'web-item-focus');
+			} else {
+				this._webListIndex = 0;
+				this._webItemFocus = this._webMenuCategoryLIsArr[0];
+				console.log(this._webItemFocus);
+				this._addFocus(this._webItemFocus, 'web-item-focus');
+			}
+		}
+
+		updateFocusedElement();
+	}
+
+	_webMenuKeyDownEvent() {
+		this._webMenuScreen.addEventListener(
+			'keydown',
+			e => {
+				const len = this._webMenuCategoryLIsArr.length - 1;
+				this._navigateWithArrows(e.which, len);
+			},
+			false
 		);
 	}
 }
