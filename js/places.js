@@ -7,6 +7,7 @@ class Places {
 		this._webItemFocus;
 		this._webListIndex = 0;
 		this._webMenuCategoryLIsArr = [];
+		
 		this._populateCategories();
 		this._getFirstCategoryItem();
 		this._webMenuSearchBoxKeyUpEvent();
