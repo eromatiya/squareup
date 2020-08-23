@@ -224,3 +224,19 @@
 .category-list li {
 	display: inline-block;
 }
+
+@media screen and (max-width: 470px) {
+
+	.category-name {
+		text-align: center;
+	}
+
+	.category-list {
+		flex-grow: 1;
+	}
+
+	.category-list li {
+		display: inline;
+	}
+
+}
