@@ -6,7 +6,7 @@ class Places {
 		this._webItemFocus;
 		this._webListIndex = 0;
 		this._populateCategories();
-		this._getFirstItem();
+		this._getFirstCategoryItem();
 		this._webMenuSearchBoxKeyUpEvent();
 	}
 
@@ -27,7 +27,7 @@ class Places {
 		}
 	}
 
-	_sortCategory() {
+	_sortCategories() {
 		Array.from(this._webMenuCategorized.querySelectorAll('.category-body'))
 			.sort((a, b) => a.id.localeCompare(b.id))
 			.forEach(li => this._webMenuCategorized.appendChild(li));
@@ -36,6 +36,8 @@ class Places {
 
 	_createItemLI(url, siteID, icon, site, categoryID) {
 		const li = document.createElement('li');
+		li.className = `web-menu-list-item web-menu-categorized`;
+		li.id = `web-menu-category-${categoryID}`;
 
 		// Generate web item/li child
 		li.insertAdjacentHTML(
@@ -95,10 +97,10 @@ class Places {
 			}
 		}
 
-		this._sortCategory();
+		this._sortCategories();
 	}
 
-	_getFirstItem() {
+	_getFirstCategoryItem() {
 		const uls = document.querySelectorAll('.category-list');
 		let lis = [];
 		for (let z = 0; z < uls.length; z++) {
@@ -131,15 +133,6 @@ class Places {
 				lis.push(ulCategoryItems[y]);
 			}
 		}
-
-		// for (let s = 0; s < lis.length; s++) {
-			// lis[s].style.backgroundColor = '#0f0';
-		// }
-
-		// Object.keys(lis).forEach(key => {
-			// console.log(key, obj[key]);
-			// lis[key].style.backgroundColor = '#ff0000';
-		// });
 		
 		// Loop through all list items, and focus if matches the search query
 		for (let i = 0; i < lis.length; i++) {
