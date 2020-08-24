@@ -16,6 +16,7 @@ class WebMenu {
 		this._webMenuItemIndex = 0;
 		this._webMenuCategoryLIsArr = [];
 		this._webMenuCategoryMode = false;
+		this._webMenuItemPopulated = false;
 
 		this._init();
 	}
@@ -444,6 +445,7 @@ class WebMenu {
 				this._webMenuCategoryMode = !this._webMenuCategoryMode;
 				this._localStorage.setItem('categoryMode', JSON.stringify(this._webMenuCategoryMode));
 				this._resetFocus();
+				this._webMenuSearchBox.focus();
 			}
 		);	
 	}
@@ -530,6 +532,11 @@ class WebMenu {
 	}
 
 	_showWebMenu() {
+		if (!this._webMenuItemPopulated) {
+			// Populate web menu
+			this._startPopulating();
+			this._webMenuItemPopulated = true;
+		}
 		this._disableWebMenuInputs(false);
 		this._webMenuButton.classList.add('active-content');
 		this._webMenuScreen.classList.add('web-menu-show');
@@ -571,9 +578,6 @@ class WebMenu {
 
 	_init() {
 		this._webMenuCategoryMode = JSON.parse(this._localStorage.getItem('categoryMode')) || false;
-
-		// Populate web menu
-		this._startPopulating()
 		this._fuzzySearch();
 		this._disableWebMenuInputs(true);
 		this._webMenuSearchBoxKeyUpEvent();
