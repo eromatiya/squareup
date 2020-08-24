@@ -467,6 +467,7 @@ class WebMenu {
 					'ArrowLeft',
 					'ArrowUp',
 					'Tab',
+					'Escape'
 				];
 
 				this._webMenuScreen.addEventListener(
@@ -479,12 +480,12 @@ class WebMenu {
 
 							// Run the focused li's callback
 							this._webItemFocus.callback();
-							// this.toggleWebMenu();
+							this.toggleWebMenu();
 
 						} else if (e.key === 'Backspace' && this._webMenuSearchBox.value.length  < 1) {
 
 							// Hide web menu if backspace is pressed and searchbox value is 0
-							// this.toggleWebMenu();
+							this.toggleWebMenu();
 							return;
 						}
 					}

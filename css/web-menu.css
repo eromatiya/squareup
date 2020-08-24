@@ -95,7 +95,6 @@
 
 /* Element inside the list item */
 .web-item {
-	/*background: transparent;*/
 	background: var(--base-secondary-bg);
 	width: 128px;
 	height: 128px;
@@ -170,6 +169,10 @@
 	display: none;
 }
 
+.category-body {
+	margin: 10px 5px;
+}
+
 .category-name {
 	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
 	font-weight: 700;
@@ -199,11 +202,6 @@
 	height: auto;
 	margin: 42px 42px;
 	border-radius: 50%;
-	box-shadow:
-				0 1px 1px rgba(0,0,0,0.08), 
-				0 2px 2px rgba(0,0,0,0.12), 
-				0 4px 4px rgba(0,0,0,0.16), 
-				0 8px 8px rgba(0,0,0,0.20);
 }
 
 #web-menu-mode-switcher {
@@ -291,7 +289,6 @@
 
 	.category-name {
 		text-align: center;
-		margin: 10px 0;
 	}
 
 	.category-list {
