@@ -13,7 +13,7 @@ class Places {
 		this._webItemFocus;
 		this._webMenuItemIndex = 0;
 		this._webMenuCategoryLIsArr = [];
-		this._webMenuCategoryMode;
+		this._webMenuCategoryMode = false;
 
 		this._init();
 	}
@@ -89,6 +89,13 @@ class Places {
 		this._sortCategoryItems();
 	}
 
+	// Create callback property, to be used when enter was pressed while item is focused	
+	_createWebItemCallback(li, url) {
+		li.callback = () => {
+			window.location.href = encodeURI(url);
+		};
+	}
+
 	// Create LI
 	_createItemCategoryLI(url, siteID, icon, site, categoryID) {
 		const li = document.createElement('li');
@@ -114,6 +121,9 @@ class Places {
 			`
 		);
 
+		// Create 'Enter' key callback to open its url
+		this._createWebItemCallback(li, url);
+
 		// Get designated list/category for this li then append this to it
 		const categoryListULID = document.querySelector(`#category-list-${categoryID}`);
 		categoryListULID.appendChild(li);
@@ -122,7 +132,7 @@ class Places {
 	_populateCategories() {
 		for (let webData of this._webSites) {
 			const site = webData.site;
-			const category = webData.category;
+			const category = webData.category || 'others';
 			const icon = webData.icon;
 			const url = webData.url;
 
@@ -163,7 +173,7 @@ class Places {
 			const site = webData.site;
 			const icon = webData.icon;
 			const url = webData.url;
-			const category = webData.category;
+			const category = webData.category || 'others';
 
 			const siteID = this._whiteSpaceToDash(site);
 			const categoryID = this._whiteSpaceToDash(category);
@@ -191,7 +201,8 @@ class Places {
 				`
 			);
 
-			// this._createWebItemCallback(li, url);
+			// Create 'Enter' key callback to open its url
+			this._createWebItemCallback(li, url);
 			this._webMenuList.appendChild(li);
 		}
 
@@ -213,6 +224,7 @@ class Places {
 		webItemFocusChildren.classList.add('web-item-focus');
 	}
 
+	// Filter search
 	_filterWebList() {
 
 		let input, filter, uls, li, a, i, txtValue;
@@ -268,10 +280,30 @@ class Places {
 		this._webMenuListContainer.scrollTo(0, 0);
 	}
 
+	// Keboard navigation
 	_keyNavigation(key) {
 		const itemLength = this._webMenuCategoryLIsArr.length - 1;
 		const [up, down, left, right] =
 			['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+
+		// Up/Down navigation - a bit clunky on category mode
+		const getIndexByWindowWidth = () => {
+			if (window.innerWidth <= 580) { return 1; }
+
+			// Width of elements (<li> and scrollbar) in pixels
+			const menuItemWidth = 138;
+			const scrollBarWidth = 10;
+
+			// Get viewport width
+			const vw = unit => window.innerWidth * (unit / 100);
+			
+			// Gets the number of columns by dividing the 
+			// screen width minus the padding, scroll width and 
+			// average of menu item width by the menu item width
+			const containerWindow = ((window.innerWidth - (menuItemWidth / 2) -
+				scrollBarWidth - vw(24)) / menuItemWidth);
+			return Math.round(containerWindow);
+		};
 
 		const updateItemFocus = (condition, overFlowIndex) => {
 			const nextItem = this._webMenuCategoryLIsArr[parseInt(this._webMenuItemIndex, 0)];
@@ -288,6 +320,10 @@ class Places {
 				updateItemFocus((this._webMenuItemIndex <= itemLength), 0);
 			} else if (key === left) {
 				updateItemFocus((this._webMenuItemIndex >= 0), itemLength);
+			} else if (key === up) {
+				return updateItemFocus((this._webMenuItemIndex >= 0), itemLength);
+			} else if (key === down) {
+				return updateItemFocus((this._webMenuItemIndex <= itemLength), 0);
 			}
 		};
 
@@ -296,6 +332,10 @@ class Places {
 				this._webMenuItemIndex++;
 			} else if (key === left) {
 				this._webMenuItemIndex--;
+			} else if (key === up) {
+				this._webMenuItemIndex = this._webMenuItemIndex - getIndexByWindowWidth();
+			} else if (key === down) {
+				this._webMenuItemIndex = this._webMenuItemIndex + getIndexByWindowWidth();
 			} else {
 				return;
 			}
@@ -316,25 +356,6 @@ class Places {
 		}
 
 		startNavigation();
-	}
-
-	_webMenuKeyDownEvent() {
-		this._webMenuScreen.addEventListener(
-			'keydown',
-			e => {
-				this._keyNavigation(e.key);
-			}
-		);
-	}
-
-	_webMenuSearchBoxKeyUpEvent() {
-		this._webMenuSearchBox.addEventListener(
-			'keyup',
-			e => {
-				if (e.key.length > 1) return;
-				this._filterWebList();
-			}
-		);
 	}
 
 	// Sort list alphabetically (Note that this is not the category mode)
@@ -368,6 +389,7 @@ class Places {
 			const categoryID = this._whiteSpaceToDash(category);
 			
 			// Check if the LI's parent, the category-body-{category-name}, exists
+			// Else create it
 			let categoryBodyDivID = document.querySelector(`#category-body-${categoryID}`);
 			if (categoryBodyDivID) {
 
@@ -376,6 +398,7 @@ class Places {
 
 			} else {
 
+				// Create categories
 				categoryBodyDivID = document.createElement('li');
 				categoryBodyDivID.className = `category-body`;
 				categoryBodyDivID.id = `category-body-${categoryID}`;
@@ -409,9 +432,11 @@ class Places {
 			e => {
 				if (this._webMenuCategoryMode) {
 					this._switchToListMode();
+					this._webMenuSearchBox.value = '';
 					this._webItemFocus.scrollIntoView();
 				} else {
 					this._switchToCategoryMode();
+					this._webMenuSearchBox.value = '';
 					this._webItemFocus.scrollIntoView();
 				}
 				this._webMenuCategoryMode = !this._webMenuCategoryMode;
@@ -419,6 +444,61 @@ class Places {
 				this._resetFocus();
 			}
 		);	
+	}
+
+	_webMenuKeyDownEvent() {
+		this._webMenuScreen.addEventListener(
+			'keydown',
+			e => {
+				this._keyNavigation(e.key);
+			}
+		);
+	}
+
+	_webMenuSearchBoxKeyDownEvent() {
+		this._webMenuSearchBox.addEventListener(
+			'keydown',
+			e => {
+				const ignoreKeys = [
+					'ArrowRight',
+					'ArrowDown',
+					'ArrowLeft',
+					'ArrowUp',
+					'Tab',
+				];
+
+				this._webMenuScreen.addEventListener(
+					'keydown',
+					e => {
+						// Ignore these keys
+						if (ignoreKeys[String(e.key)]) console.log('ignored');
+
+						if (e.key === 'Enter' && this._webItemFocus) {
+
+							// Run the focused li's callback
+							this._webItemFocus.callback();
+							// this.toggleWebMenu();
+
+						} else if (e.key === 'Backspace' && this._webMenuSearchBox.value.length  < 1) {
+
+							// Hide web menu if backspace is pressed and searchbox value is 0
+							// this.toggleWebMenu();
+							return;
+						}
+					}
+				);
+			}
+		);
+	}
+
+	_webMenuSearchBoxKeyUpEvent() {
+		this._webMenuSearchBox.addEventListener(
+			'keyup',
+			e => {
+				if (e.key.length > 1) return;
+				this._filterWebList();
+			}
+		);
 	}
 
 	_init() {
@@ -438,6 +518,7 @@ class Places {
 
 		// Register events
 		this._webMenuSearchBoxKeyUpEvent();
+		this._webMenuSearchBoxKeyDownEvent();
 		this._webMenuKeyDownEvent();
 		this._webMenuModeSwitcherClickEvent();
 	}
