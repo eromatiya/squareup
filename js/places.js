@@ -11,7 +11,7 @@ class Places {
 		this._webMenuModeSwitcherImage = document.querySelector('#web-menu-mode-switcher-img');
 
 		this._webItemFocus;
-		this._webListIndex = 0;
+		this._webMenuItemIndex = 0;
 		this._webMenuCategoryLIsArr = [];
 		this._webMenuCategoryMode;
 
@@ -233,7 +233,7 @@ class Places {
 				const oldWebItemFocusChild = oldWebItemFocus.querySelector('.web-item');
 				oldWebItemFocusChild.classList.remove('web-item-focus');
 				this._webItemFocus = li[parseInt(i, 10)];
-				this._webListIndex = i;
+				this._webMenuItemIndex = i;
 				const webItemFocusChild = this._webItemFocus.querySelector('.web-item');
 				webItemFocusChild.classList.add('web-item-focus');
 				this._webItemFocus.scrollIntoView();
@@ -258,7 +258,7 @@ class Places {
 	// Reset focus
 	_resetFocus() {
 		this._removeFocus(this._webItemFocus, 'web-item-focus');
-		this._webListIndex = 0;
+		this._webMenuItemIndex = 0;
 		if (this._webMenuCategoryMode) {
 			this._getFirstCategoryItem();
 		} else {
@@ -273,35 +273,78 @@ class Places {
 		const [up, down, left, right] =
 			['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 
-		if (right === key) {
-			this._webMenuSearchBox.value = '';
-			this._webListIndex++;
-			if (this._webItemFocus) {
-				this._removeFocus(this._webItemFocus, 'web-item-focus');
+		// if (right === key) {
+		// 	this._webMenuSearchBox.value = '';
+		// 	this._webMenuItemIndex++;
+		// 	if (this._webItemFocus) {
+		// 		this._removeFocus(this._webItemFocus, 'web-item-focus');
 
-				const nextItem = this._webMenuCategoryLIsArr[this._webListIndex];
+		// 		const nextItem = this._webMenuCategoryLIsArr[this._webMenuItemIndex];
+		// 		this._webItemFocus = nextItem;
+		// 	} else {
+		// 		this._webMenuItemIndex = 0;
+		// 		this._webItemFocus = this._webMenuCategoryLIsArr[parseInt(this._webMenuItemIndex, 10)];
+		// 	}
+		// 	this._addFocus(this._webItemFocus, 'web-item-focus');
+		// } else if (left === key) {
+		// 	this._webMenuSearchBox.value = '';
+		// 	this._webMenuItemIndex--;
+		// 	if (this._webItemFocus) {
+		// 		this._removeFocus(this._webItemFocus, 'web-item-focus');
+
+		// 		const nextItem = this._webMenuCategoryLIsArr[this._webMenuItemIndex];
+		// 		this._webItemFocus = nextItem;
+		// 		this._addFocus(this._webItemFocus, 'web-item-focus');
+		// 	} else {
+		// 		this._webMenuItemIndex = 0;
+		// 		this._webItemFocus = this._webMenuCategoryLIsArr[parseInt(this._webMenuItemIndex, 10)];
+		// 	}
+		// 	this._addFocus(this._webItemFocus, 'web-item-focus');
+		// }
+
+		const updateItemFocus = (condition, overFlowIndex) => {
+			const nextItem = this._webMenuCategoryLIsArr[parseInt(this._webMenuItemIndex, 0)];
+			if(typeof nextItem !== 'undefined' && condition) {			
 				this._webItemFocus = nextItem;
 			} else {
-				this._webListIndex = 0;
-				this._webItemFocus = this._webMenuCategoryLIsArr[parseInt(this._webListIndex, 10)];
+				this._webMenuItemIndex = overFlowIndex;
+				this._webItemFocus = this._webMenuCategoryLIsArr[parseInt(overFlowIndex, 10)];
 			}
-			this._addFocus(this._webItemFocus, 'web-item-focus');
-		} else if (left === key) {
-			this._webMenuSearchBox.value = '';
-			this._webListIndex--;
-			if (this._webItemFocus) {
-				this._removeFocus(this._webItemFocus, 'web-item-focus');
+		};
 
-				const nextItem = this._webMenuCategoryLIsArr[this._webListIndex];
-				this._webItemFocus = nextItem;
-				this._addFocus(this._webItemFocus, 'web-item-focus');
-			} else {
-				this._webListIndex = 0;
-				this._webItemFocus = this._webMenuCategoryLIsArr[parseInt(this._webListIndex, 10)];
+		const updateItemFocusByKey = () => {
+			if (key === right) {
+				updateItemFocus((this._webMenuItemIndex <= itemLength), 0);
+			} else if (key === left) {
+				updateItemFocus((this._webMenuItemIndex >= 0), itemLength);
 			}
-			this._addFocus(this._webItemFocus, 'web-item-focus');
+		};
+
+		const updateWebMenuItemIndex = () => {
+			if (key === right) {
+				this._webMenuItemIndex++;
+			} else if (key === left) {
+				this._webMenuItemIndex--;
+			} else {
+				return;
+			}
+			this._webMenuSearchBox.value = '';
 		}
 
+		const startNavigation = () => {
+			updateWebMenuItemIndex();
+			if (this._webItemFocus) {
+				this._removeFocus(this._webItemFocus, 'web-item-focus');
+				updateItemFocusByKey();
+				this._addFocus(this._webItemFocus, 'web-item-focus');
+			} else {
+				this._webMenuItemIndex = 0;
+				this._webItemFocus = this._webMenuCategoryLIsArr[parseInt(this._webMenuItemIndex, 0)];
+				this._addFocus(this._webItemFocus, 'web-item-focus');
+			}
+		}
+
+		startNavigation();
 	}
 
 	_webMenuKeyDownEvent() {
