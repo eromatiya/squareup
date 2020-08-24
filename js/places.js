@@ -273,35 +273,6 @@ class Places {
 		const [up, down, left, right] =
 			['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 
-		// if (right === key) {
-		// 	this._webMenuSearchBox.value = '';
-		// 	this._webMenuItemIndex++;
-		// 	if (this._webItemFocus) {
-		// 		this._removeFocus(this._webItemFocus, 'web-item-focus');
-
-		// 		const nextItem = this._webMenuCategoryLIsArr[this._webMenuItemIndex];
-		// 		this._webItemFocus = nextItem;
-		// 	} else {
-		// 		this._webMenuItemIndex = 0;
-		// 		this._webItemFocus = this._webMenuCategoryLIsArr[parseInt(this._webMenuItemIndex, 10)];
-		// 	}
-		// 	this._addFocus(this._webItemFocus, 'web-item-focus');
-		// } else if (left === key) {
-		// 	this._webMenuSearchBox.value = '';
-		// 	this._webMenuItemIndex--;
-		// 	if (this._webItemFocus) {
-		// 		this._removeFocus(this._webItemFocus, 'web-item-focus');
-
-		// 		const nextItem = this._webMenuCategoryLIsArr[this._webMenuItemIndex];
-		// 		this._webItemFocus = nextItem;
-		// 		this._addFocus(this._webItemFocus, 'web-item-focus');
-		// 	} else {
-		// 		this._webMenuItemIndex = 0;
-		// 		this._webItemFocus = this._webMenuCategoryLIsArr[parseInt(this._webMenuItemIndex, 10)];
-		// 	}
-		// 	this._addFocus(this._webItemFocus, 'web-item-focus');
-		// }
-
 		const updateItemFocus = (condition, overFlowIndex) => {
 			const nextItem = this._webMenuCategoryLIsArr[parseInt(this._webMenuItemIndex, 0)];
 			if(typeof nextItem !== 'undefined' && condition) {			
