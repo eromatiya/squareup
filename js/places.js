@@ -4,6 +4,7 @@ class Places {
 		this._webSites = config.getWebSites();
 		this._webMenuScreen = document.querySelector('#web-menu');
 		this._webMenuList = document.querySelector('#web-menu-list');
+		this._webMenuListContainer = document.querySelector('#web-menu-list-container');
 		this._webMenuCategorized = document.querySelector('#web-menu-categorized');
 		this._webMenuSearchBox = document.querySelector('#web-menu-searchbox');
 		this._webMenuModeSwitcher = document.querySelector('#web-menu-mode-switcher');
@@ -49,7 +50,7 @@ class Places {
 
 	// Update <li> array while in category mode
 	_getCategoryLIs() {
-		if (this._webMenuCategoryLIsArr.length > 1) return;
+		this._webMenuCategoryLIsArr = [];
 		const uls = document.querySelectorAll('.category-list');
 		for (let z = 0; z < uls.length; z++) {
 			let ulCategoryItems = uls[z].getElementsByTagName('li');
@@ -61,7 +62,7 @@ class Places {
 
 	// Update <li> array while in alphabetical list mode
 	_getListLIs() {
-		if (this._webMenuCategoryLIsArr.length > 1) return;
+		this._webMenuCategoryLIsArr = [];
 		const ul = this._webMenuList;
 		const lis = ul.getElementsByTagName('li');
 		for (let z = 0; z < lis.length; z++) {
@@ -254,95 +255,48 @@ class Places {
 		webItemFocusChild.scrollIntoView();
 	}
 
-	// _navigateWithArrows(key, len) {
+	// Reset focus
+	_resetFocus() {
+		this._removeFocus(this._webItemFocus, 'web-item-focus');
+		this._webListIndex = 0;
+		if (this._webMenuCategoryMode) {
+			this._getFirstCategoryItem();
+		} else {
+			this._getFirstListItem();
+		}
+		// Scroll to top
+		this._webMenuListContainer.scrollTo(0, 0);
+	}
 
-	// 	// Assign constant variables to key codes
-	// 	const [right, left, down, up] = [39, 37, 40, 38];
+	_keyNavigation(key) {
+		const itemLength = this._webMenuCategoryLIsArr.length - 1;
+		const [up, down, left, right] =
+			['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 
-	// 	// Calculate screen width - Allows up/down navigation
-	// 	const getIndexByWindowWidth = () => {
-	// 		if (window.innerWidth <= 580) { return 1; }
+		if (right === key) {
 
-	// 		// Width of elements (<li> and scrollbar) in pixels
-	// 		const menuItemWidth = 138;
-	// 		const scrollBarWidth = 10;
+			this._webMenuSearchBox.value = '';
+			if (this._webItemFocus) {
+				this._removeFocus(this._webItemFocus, 'web-item-focus');
+				this._webListIndex++;
 
-	// 		// Get viewport width
-	// 		const vw = unit => window.innerWidth * (unit / 100);
-			
-	// 		// Gets the number of columns by dividing the 
-	// 		// screen width minus the padding, scroll width and 
-	// 		// average of menu item width by the menu item width
-	// 		const containerWindow = ((window.innerWidth - (menuItemWidth / 2) -
-	// 			scrollBarWidth - vw(24)) / menuItemWidth);
-	// 		return Math.round(containerWindow);
-	// 	};
+				const nextItem = this._webMenuCategoryLIsArr[this._webListIndex];
+				this._webItemFocus = nextItem;
+				this._addFocus(this._webItemFocus, 'web-item-focus');
+			} else {
+				// Do we really need this block???
+				// this._addFocus(this._webItemFocus, 'web-item-focus');
+				console.log('ueah we need ut');
+			}
+		}
 
-	// 	// Update focused item element
-	// 	const changeItemFocus = (condition, overFlowIndex) => {
-	// 		const next = this._webMenuCategoryLIsArr[this._webListIndex];
-	// 		if(typeof next !== 'undefined' && condition) {			
-	// 			this._webItemFocus = next;
-	// 		} else {
-	// 			this._webListIndex = overFlowIndex;
-	// 			this._webItemFocus = this._webMenuCategoryLIsArr[parseInt(overFlowIndex, 10)];
-	// 		}
-	// 	};
-
-	// 	const updateItemFocusByKey = () => {
-	// 		if (key === right) {
-	// 			return changeItemFocus((this._webListIndex <= len), 0);
-	// 		} else if (key === left) {
-	// 			return changeItemFocus((this._webListIndex >= 0), len);
-	// 		} else if (key === up) {
-	// 			return changeItemFocus((this._webListIndex >= 0), len);
-	// 		} else if (key === down) {
-	// 			return changeItemFocus((this._webListIndex <= len), 0);
-	// 		}
-	// 	};
-
-	// 	// Determine the index position by key
-	// 	const updateWebListIndex = () => {
-	// 		if (key === right) {
-	// 			this._webListIndex++;
-	// 		} else if (key === left) {
-	// 			this._webListIndex--;
-	// 		} else if (key === up) {
-	// 			this._webListIndex = this._webListIndex - getIndexByWindowWidth();
-	// 		} else if (key === down) {
-	// 			this._webListIndex = this._webListIndex + getIndexByWindowWidth();
-	// 		} else {
-	// 			return;
-	// 		}
-	// 		this._webMenuSearchBox.value = '';
-	// 	};
-
-	// 	// Set focused element
-	// 	const updateFocusedElement = () => {
-			
-	// 		updateWebListIndex();
-	// 		if (this._webItemFocus) {
-	// 			this._removeFocus(this._webItemFocus, 'web-item-focus');
-	// 			updateItemFocusByKey();
-	// 			this._addFocus(this._webItemFocus, 'web-item-focus');
-	// 		} else {
-	// 			this._webListIndex = 0;
-	// 			this._webItemFocus = this._webMenuCategoryLIsArr[0];
-	// 			console.log(this._webItemFocus);
-	// 			this._addFocus(this._webItemFocus, 'web-item-focus');
-	// 		}
-	// 	}
-
-	// 	updateFocusedElement();
-	// }
+	}
 
 	_webMenuKeyDownEvent() {
 		this._webMenuScreen.addEventListener(
 			'keydown',
 			e => {
-				const len = this._webMenuCategoryLIsArr.length;
-				console.log(len);
-				// this._navigateWithArrows(e.which, len);
+				this._keyNavigation(e.key);
 			}
 		);
 	}
@@ -436,6 +390,7 @@ class Places {
 				}
 				this._webMenuCategoryMode = !this._webMenuCategoryMode;
 				this._localStorage.setItem('categoryMode', JSON.stringify(this._webMenuCategoryMode));
+				this._resetFocus();
 			}
 		);	
 	}
