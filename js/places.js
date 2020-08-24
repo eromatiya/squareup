@@ -47,8 +47,9 @@ class Places {
 		return str.charAt(0).toUpperCase() + str.slice(1);
 	}
 
-	// Update <li> array
+	// Update <li> array while in category mode
 	_getCategoryLIs() {
+		if (this._webMenuCategoryLIsArr.length > 1) return;
 		const uls = document.querySelectorAll('.category-list');
 		for (let z = 0; z < uls.length; z++) {
 			let ulCategoryItems = uls[z].getElementsByTagName('li');
@@ -58,7 +59,9 @@ class Places {
 		}
 	}
 
+	// Update <li> array while in alphabetical list mode
 	_getListLIs() {
+		if (this._webMenuCategoryLIsArr.length > 1) return;
 		const ul = this._webMenuList;
 		const lis = ul.getElementsByTagName('li');
 		for (let z = 0; z < lis.length; z++) {
@@ -85,7 +88,8 @@ class Places {
 		this._sortCategoryItems();
 	}
 
-	_createItemLI(url, siteID, icon, site, categoryID) {
+	// Create LI
+	_createItemCategoryLI(url, siteID, icon, site, categoryID) {
 		const li = document.createElement('li');
 		li.className = `web-menu-list-item web-menu-categorized`;
 		li.id = `web-menu-category-${categoryID}`;
@@ -143,18 +147,17 @@ class Places {
 				categoryBodyDivID.appendChild(categoryListULID);
 				this._webMenuCategorized.appendChild(categoryBodyDivID);
 
-				this._createItemLI(url, siteID, icon, site, categoryID);
+				this._createItemCategoryLI(url, siteID, icon, site, categoryID);
 			} else {
-				this._createItemLI(url, siteID, icon, site, categoryID);
+				this._createItemCategoryLI(url, siteID, icon, site, categoryID);
 			}
 		}
 
 		this._sortCategories();
 	}
 
+	// Populate list item for list mode
 	_populateList() {
-
-		// Generate a list
 		for (let webData of this._webSites) {
 			const site = webData.site;
 			const icon = webData.icon;
@@ -337,7 +340,8 @@ class Places {
 		this._webMenuScreen.addEventListener(
 			'keydown',
 			e => {
-				// const len = this._webMenuCategoryLIsArr.length;
+				const len = this._webMenuCategoryLIsArr.length;
+				console.log(len);
 				// this._navigateWithArrows(e.which, len);
 			}
 		);
@@ -366,8 +370,8 @@ class Places {
 		for (let i = 0; i < this._webMenuCategoryLIsArr.length; i++) {
 			this._webMenuList.appendChild(this._webMenuCategoryLIsArr[i]);
 		}
+		
 		this._sortList();
-
 		this._webMenuList.classList.remove('web-menu-list-hide');
 		this._webMenuCategorized.classList.add('web-menu-categorized-hide');
 		this._webMenuModeSwitcherImage.classList.remove('category-mode');
