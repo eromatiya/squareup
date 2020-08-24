@@ -7,7 +7,7 @@
 					var(--gradient-end-bg)
 				);
 	background-size: 400% 400%;
-	/*animation: wave 20s ease infinite;*/
+	animation: wave 20s ease infinite;
 }
 
 @keyframes wave {
@@ -32,67 +32,67 @@
 	top: 10%;
 	left: 10%;
 	border-radius: 15px;
-	/*animation: float 4s linear infinite;*/
+	animation: float 4s linear infinite;
 }
 
 .gradient-body div:nth-child(1) {
 	top: 20%;
 	left: 20%;
-	/*animation: float 8s linear infinite;*/
+	animation: float 8s linear infinite;
 }
 
 .gradient-body div:nth-child(2) {
 	top: 26%;
 	left: 89%;
-	/*animation: float 10s linear infinite;*/
+	animation: float 10s linear infinite;
 }
 
 .gradient-body div:nth-child(3) {
 	top: 80%;
 	left: 90%;
-	/*animation: float 5s linear infinite;*/
+	animation: float 5s linear infinite;
 }
 
 .gradient-body div:nth-child(4) {
 	top: 65%;
 	left: 75%;
-	/*animation: float 7s linear infinite;*/
+	animation: float 7s linear infinite;
 }
 
 .gradient-body div:nth-child(5) {
 	top: 90%;
 	left: 10%;
-	/*animation: float 9s linear infinite;*/
+	animation: float 9s linear infinite;
 }
 
 .gradient-body div:nth-child(6) {
 	top: 30%;
 	left: 60%;
-	/*animation: float 5s linear infinite;*/
+	animation: float 5s linear infinite;
 }
 
 .gradient-body div:nth-child(7) {
 	top: 70%;
 	left: 33%;
-	/*animation: float 8s linear infinite;*/
+	animation: float 8s linear infinite;
 }
 
 .gradient-body div:nth-child(8) {
 	top: 75%;
 	left: 60%;
-	/*animation: float 10s linear infinite;*/
+	animation: float 10s linear infinite;
 }
 
 .gradient-body div:nth-child(9) {
 	top: 23%;
 	left: 50%;
-	/*animation: float 6s linear infinite;*/
+	animation: float 6s linear infinite;
 }
 
 .gradient-body div:nth-child(10) {
 	top: 35%;
 	left: 7%;
-	/*animation: float 10s linear infinite;*/
+	animation: float 10s linear infinite;
 }
 
 @keyframes float {
