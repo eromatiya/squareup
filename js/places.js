@@ -274,20 +274,32 @@ class Places {
 			['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 
 		if (right === key) {
-
 			this._webMenuSearchBox.value = '';
+			this._webListIndex++;
 			if (this._webItemFocus) {
 				this._removeFocus(this._webItemFocus, 'web-item-focus');
-				this._webListIndex++;
+
+				const nextItem = this._webMenuCategoryLIsArr[this._webListIndex];
+				this._webItemFocus = nextItem;
+			} else {
+				this._webListIndex = 0;
+				this._webItemFocus = this._webMenuCategoryLIsArr[parseInt(this._webListIndex, 10)];
+			}
+			this._addFocus(this._webItemFocus, 'web-item-focus');
+		} else if (left === key) {
+			this._webMenuSearchBox.value = '';
+			this._webListIndex--;
+			if (this._webItemFocus) {
+				this._removeFocus(this._webItemFocus, 'web-item-focus');
 
 				const nextItem = this._webMenuCategoryLIsArr[this._webListIndex];
 				this._webItemFocus = nextItem;
 				this._addFocus(this._webItemFocus, 'web-item-focus');
 			} else {
-				// Do we really need this block???
-				// this._addFocus(this._webItemFocus, 'web-item-focus');
-				console.log('ueah we need ut');
+				this._webListIndex = 0;
+				this._webItemFocus = this._webMenuCategoryLIsArr[parseInt(this._webListIndex, 10)];
 			}
+			this._addFocus(this._webItemFocus, 'web-item-focus');
 		}
 
 	}
