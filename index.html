@@ -70,10 +70,22 @@
 			<div id='web-menu-searchbox-container'>
 				<input type='text' id='web-menu-searchbox' autocomplete='off' placeholder='Type to search'>
 			</div>
-			<div id='web-menu-list-container'>
+			<!-- DISPLAY DEPENDS ON MODE -->
+			<div id='web-menu-list-container'> 
+				<ul id='web-menu-categorized'>
+				<!-- Below is the structure of the categorized menu
+					Look for web-menu.js
+					<li class='category-body' id='category-body-{category-name}'>
+						<h3 class='category-name' id='category-name-{category-name}'>{Category Name}</h3>
+						<ul class='category-list' id='category-list-{category-name}'>
+							<li class='category-item' id='category-item-{category-name}'>{Category Item 1}</li>
+						</ul>
+					</li>
+				-->
+				</ul>
 				<ul id='web-menu-list'>
-					<!-- Below is the structure of an LI that will be generated in js/web-menu.js -->
-					<!-- 
+					<!-- Below is the structure of the sorted alphabetically menu
+					Look for web-menu.js
 					<li>
 						<a href='https://example.com'>
 							<div class='web-item'>
@@ -91,6 +103,11 @@
  					-->
 				</ul> 
 			</div>
+		</div>
+		<div id='web-menu-mode-switcher-container'>
+			<button type='button' id='web-menu-mode-switcher'>
+				<div id='web-menu-mode-switcher-img'></div>
+			</button>
 		</div>
 	</div>
 

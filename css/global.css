@@ -12,6 +12,7 @@
 	--gradient-start-bg: #4568dc;
 	--gradient-end-bg: #b06ab3;
 	--transition-speed: 300ms;
+	--image-invert: invert(0);
 }
 
 [data-theme='dark'] {
@@ -27,6 +28,7 @@
 	--button-active: var(--active-bg);
 	--gradient-start-bg: #7b4397;
 	--gradient-end-bg: #dc2430;
+	--image-invert: invert(1);
 }
 
 * {

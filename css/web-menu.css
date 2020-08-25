@@ -44,6 +44,10 @@
 	overflow-y: auto;
 }
 
+#web-menu-list-container.web-menu-category-mode {
+	display: block;
+}
+
 #web-menu-searchbox {
 	background: var(--base-secondary-bg);
 	color: var(--font-color);
@@ -74,6 +78,10 @@
 	background: transparent;
 }
 
+#web-menu-list.web-menu-list-hide {
+	display: none;
+}
+
 /* List */
 #web-menu-list li {
 	display: inline-block;
@@ -87,7 +95,6 @@
 
 /* Element inside the list item */
 .web-item {
-	/*background: transparent;*/
 	background: var(--base-secondary-bg);
 	width: 128px;
 	height: 128px;
@@ -152,6 +159,90 @@
 	user-select: none;
 }
 
+#web-menu-categorized {
+	list-style-type: none;
+	padding: 0;
+	margin: 0 auto;
+}
+
+#web-menu-categorized.web-menu-categorized-hide {
+	display: none;
+}
+
+.category-body {
+	margin: 10px 5px;
+}
+
+.category-name {
+	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
+	font-weight: 700;
+	color: var(--font-color);
+	margin: 0 5px;
+}
+
+.category-list {
+	list-style-type: none;
+	padding: 0;
+	margin: 0 auto;
+	flex-grow: 1;
+	text-align: justify;
+	background: transparent;
+	overflow: hidden;
+}
+
+.category-list li {
+	display: inline-block;
+}
+
+#web-menu-mode-switcher-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: auto;
+	height: auto;
+	margin: 42px 42px;
+	border-radius: 50%;
+}
+
+#web-menu-mode-switcher {
+	background: var(--base-secondary-bg);
+	border: none;
+	outline: none;
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#web-menu-mode-switcher:hover {
+	background: var(--button-hover);
+}
+
+#web-menu-mode-switcher:active {
+	background: var(--button-active);
+}
+
+#web-menu-mode-switcher:selected {
+	background: var(--button-active);
+}
+
+#web-menu-mode-switcher-img {
+	background-image: url('../assets/buttons/alphabetical.svg');
+	background-size: cover;
+	filter: var(--image-invert);
+	width: 100%;
+	height: 100%;
+}
+
+#web-menu-mode-switcher-img.category-mode {
+	background-image: url('../assets/buttons/categories.svg');
+	background-size: cover;
+	filter: var(--image-invert);
+	width: 100%;
+	height: 100%;
+}
+
 @media screen and (max-width: 470px) {
 	#web-menu-searchbox {
 		width: 50vw;
@@ -188,5 +279,23 @@
 
 	#web-menu-list-container::-webkit-scrollbar {
 		display: none;
+	}
+
+	#web-menu-mode-switcher-container {
+		top: unset;
+		right: 0;
+		bottom: 0;
+	}
+
+	.category-name {
+		text-align: center;
+	}
+
+	.category-list {
+		flex-grow: 1;
+	}
+
+	.category-list li {
+		display: inline;
 	}
 }
