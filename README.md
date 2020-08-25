@@ -67,12 +67,12 @@
 
 + `g/` + `search query` to search a for a repo/user on github.
 	- `g/manilarome`
-	- `g/polyfloat`
-	- `g/manilarome/polyfloat`
+	- `g/squareup`
+	- `g/manilarome/squareup`
 
 ## URL Redirects
 
-Searching a valid URL will redirect you to the said URL. Note that a protocol, `https://` and `http://` for example, is required.
+Searching a valid URL will redirect you to the said URL. Note that a protocol, `https://` for example, is required.
 
 + `https://haveibeenpwned.com/` query is valid, so you will be redirected to [https://haveibeenpwned.com/](https://haveibeenpwned.com/).
 + `google.com` is not a valid URL, so it will search it on your default search engine.
@@ -80,10 +80,10 @@ Searching a valid URL will redirect you to the said URL. Note that a protocol, `
 
 ## URL Query Parameters
 
-You can also pass a query by using the `q` parameter. Your default search engine will be used.
+You can also pass a query by using the `q` parameter. The default search engine will be used.
 
 + `manilarome.github.io/squareup?q=how to build a nuclear reactor at home`
-+ `manilarome.github.io/squareup?q=how to download more RAM in google play store`
++ `127.0.0.1?q=how to download more RAM in google play store`
 + `file:///PATH/TO/squareup/index.html?q=how to restore system32`
 
 ## Settings and Customization
@@ -92,9 +92,9 @@ You can also pass a query by using the `q` parameter. Your default search engine
 
 Change the color scheme by just clicking a button!
 
-+ Dark - Dark colorscheme. Good for the night.
-+ Light - Bright colorscheme. Good for killing the eyes.
-+ Auto - Load a colorscheme based on time. Edit light/dark mode hours on `js/config.js` 
++ `Dark` - Dark colorscheme. Good for the night.
++ `Light` - Bright colorscheme. Good for killing the eyes.
++ `Auto` - Load a colorscheme based on time. Edit light/dark mode hours on `js/config.js` 
 
 #### Customizing panel buttons
 
@@ -174,7 +174,31 @@ const searchEngines = {
 
 #### Changing clock mode
 
-There are two clock modes available. `24-hour` and `12-hour`. Switch between clock modes by just clicking on the clock. Simple.
+There are two clock modes available - `24-hour` and `12-hour`. Switch between clock modes by just clicking on the clock. Simple.
+
+### Important Note
+
++ Make sure that javascript is enabled in your browser!
++ Make sure to whitelist or disable `NoScript` and `Dark Mode Reader` extensions on this homepage.
++ If you are experiencing slowdowns, you can disable the animations in `css/animated-background.css`.
++ Tested only on Firefox and Google Chrome.
+
+### TODOs
+
+Squareup will sit between minimal and bloated. The items in this TODO list are the only one I'm planning to implement in this homepage.
+
+- [x] Search engine switching
+- [x] Autosuggestion
+- [x] Categorized Web Menu
+
+
+### Issues? 
+
+Feel free to open one!
+
+### PR?
+
+That would be great!
 
 ### Other works
 
@@ -183,18 +207,3 @@ Check my other works related to this startpage.
 + [blurredfox](https://github.com/manilarome/blurredfox/) - a gorgeous and modern firefox CSS theme.
 + [the-glorious-startpage](https://github.com/manilarome/the-glorious-startpage) - my very first startpage. Kinda bloaty and code is quite messy but still kinda works and looks gorgeous.
 + [the-glorious-dotfiles](https://github.com/manilarome/the-glorious-dotfiles) - a stash of my configurations.
-
-### Important Note
-
-+ Make sure that javascript is enabled in your browser!
-+ Make sure to whitelist the startpage in `NoScript` and `Dark Mode Reader` extensions, if you have them installed/running.
-+ Tested only on Firefox and Google Chrome.
-
-### TODOs
-
-Squareup will sit between minimal and bloated, so yeah. The items in this TODO list are the only one I'm planning to implement in this homepage. If there's still unchecked, feel free to contribute by submitting a PR!
-
-- [x] Day/Night switching
-- [x] Search engine switching
-- [x] Autosuggestion
-- [ ] Categorized Web Menu
