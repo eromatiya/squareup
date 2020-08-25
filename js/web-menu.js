@@ -94,8 +94,9 @@ class WebMenu {
 
 	// Create callback property, to be used when enter was pressed while item is focused	
 	_createWebItemCallback(li, url) {
-		li.callback = () => {
-			window.location.href = encodeURI(url);
+		li.url = url;
+		li.openURL = function() {
+			window.location.href = encodeURI(this.url);
 		};
 	}
 
@@ -476,14 +477,11 @@ class WebMenu {
 					'keydown',
 					e => {
 						// Ignore these keys
-						if (ignoreKeys[String(e.key)]) console.log('ignored');
-
+						if (ignoreKeys[String(e.key)]) return;
 						if (e.key === 'Enter' && this._webItemFocus) {
 
-							// Run the focused li's callback
-							this._webItemFocus.callback();
-							this.toggleWebMenu();
-
+							// Run the focused li's openURL() function
+							this._webItemFocus.openURL();
 						} else if (e.key === 'Backspace' && this._webMenuSearchBox.value.length  < 1) {
 
 							// Hide web menu if backspace is pressed and searchbox value is 0
