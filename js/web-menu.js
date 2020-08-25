@@ -30,7 +30,6 @@ class WebMenu {
 			
 			// Coverts basic partial matches
 			if (string.indexOf(compare) > -1) return true; 
-			
 			for (let i = 0; i < compare.length; i++) {
 				const ind = string.indexOf(compare[parseInt(i, 10)]);
 				if (ind > -1) {
@@ -167,7 +166,6 @@ class WebMenu {
 				this._createItemCategoryLI(url, siteID, icon, site, categoryID, categoryUL);
 			}
 		}
-
 		this._sortCategories();
 	}
 
@@ -209,7 +207,6 @@ class WebMenu {
 			this._createWebItemCallback(li, url);
 			this._webMenuList.appendChild(li);
 		}
-
 		this._sortList();
 	}
 
@@ -277,7 +274,6 @@ class WebMenu {
 		} else {
 			this._getFirstListItem();
 		}
-		// Scroll to top
 		this._webMenuListContainer.scrollTo(0, 0);
 	}
 
@@ -452,6 +448,7 @@ class WebMenu {
 				this._webMenuScreen.addEventListener(
 					'keydown',
 					e => {
+
 						// Ignore these keys
 						if (ignoreKeys[String(e.key)]) return;
 						if (e.key === 'Enter' && this._webItemFocus) {
@@ -499,7 +496,6 @@ class WebMenu {
 	_disableWebMenuInputs(status) {
 		const elems = this._webMenuScreen.getElementsByTagName('input');
 		const len = elems.length;
-
 		for (let i = 0; i < len; i++) {
 			elems[parseInt(i, 10)].disabled = status;
 		}
@@ -507,6 +503,7 @@ class WebMenu {
 
 	_showWebMenu() {
 		if (!this._webMenuItemPopulated) {
+			
 			// Populate web menu
 			this._startPopulating();
 			this._webMenuItemPopulated = true;
