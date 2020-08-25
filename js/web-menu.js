@@ -101,7 +101,7 @@ class WebMenu {
 	}
 
 	// Create LI
-	_createItemCategoryLI(url, siteID, icon, site, categoryID) {
+	_createItemCategoryLI(url, siteID, icon, site, categoryID, categoryUL) {
 		const li = document.createElement('li');
 		li.className = `web-menu-list-item web-menu-categorized`;
 		li.id = `web-menu-category-${categoryID}`;
@@ -125,12 +125,27 @@ class WebMenu {
 			`
 		);
 
-		// Create 'Enter' key callback to open its url
 		this._createWebItemCallback(li, url);
+		categoryUL.appendChild(li);
+	}
 
-		// Get designated list/category for this li then append this to it
-		const categoryListULID = document.querySelector(`#category-list-${categoryID}`);
-		categoryListULID.appendChild(li);
+	_createCatregories(category, categoryID) {
+		const categoryBodyDivID = document.createElement('li');
+		categoryBodyDivID.className = `category-body`;
+		categoryBodyDivID.id = `category-body-${categoryID}`;
+
+		const categoryNameH3ID = document.createElement('h3');
+		categoryNameH3ID.className = `category-name`;
+		categoryNameH3ID.id = `category-name-${categoryID}`;
+		categoryNameH3ID.innerText = `${this._capitalizeString(category)}`;
+
+		const categoryUL = document.createElement('ul');
+		categoryUL.className = `category-list`;
+		categoryUL.id = `category-list-${categoryID}`;
+
+		categoryBodyDivID.appendChild(categoryNameH3ID);
+		categoryBodyDivID.appendChild(categoryUL);
+		this._webMenuCategorized.appendChild(categoryBodyDivID);
 	}
 
 	_populateCategories() {
@@ -143,28 +158,13 @@ class WebMenu {
 			const siteID = this._whiteSpaceToDash(site);
 			const categoryID = this._whiteSpaceToDash(category);
 
-			let categoryBodyDivID = document.querySelector(`#category-body-${categoryID}`);
-			if (categoryBodyDivID === null) {
-				categoryBodyDivID = document.createElement('li');
-				categoryBodyDivID.className = `category-body`;
-				categoryBodyDivID.id = `category-body-${categoryID}`;
-
-				const categoryNameH3ID = document.createElement('h3');
-				categoryNameH3ID.className = `category-name`;
-				categoryNameH3ID.id = `category-name-${categoryID}`;
-				categoryNameH3ID.innerText = `${this._capitalizeString(category)}`;
-
-				const categoryListULID = document.createElement('ul');
-				categoryListULID.className = `category-list`;
-				categoryListULID.id = `category-list-${categoryID}`;
-
-				categoryBodyDivID.appendChild(categoryNameH3ID);
-				categoryBodyDivID.appendChild(categoryListULID);
-				this._webMenuCategorized.appendChild(categoryBodyDivID);
-
-				this._createItemCategoryLI(url, siteID, icon, site, categoryID);
+			if (!document.querySelector(`#category-body-${categoryID}`)) {
+				this._createCatregories(category, categoryID);
+				let categoryUL = document.querySelector(`#category-list-${categoryID}`);
+				this._createItemCategoryLI(url, siteID, icon, site, categoryID, categoryUL);
 			} else {
-				this._createItemCategoryLI(url, siteID, icon, site, categoryID);
+				let categoryUL = document.querySelector(`#category-list-${categoryID}`);
+				this._createItemCategoryLI(url, siteID, icon, site, categoryID, categoryUL);
 			}
 		}
 
@@ -230,9 +230,7 @@ class WebMenu {
 
 	// Filter search
 	_filterWebList() {
-
 		let input, filter, uls, li, a, i, txtValue;
-		
 		input = this._webMenuSearchBox;
 		filter = input.value.toUpperCase();
 		li = this._webMenuCategoryLIsArr;
@@ -266,7 +264,6 @@ class WebMenu {
 	// Add focus class
 	_addFocus(el, className) {
 		const webItemFocusChild = el.querySelector('.web-item');
-
 		webItemFocusChild.classList.add(className);
 		webItemFocusChild.scrollIntoView();
 	}
@@ -387,40 +384,19 @@ class WebMenu {
 
 		// Transfer all web items(LIs) to category mode
 		for (let i = 0; i < this._webMenuCategoryLIsArr.length; i++) {
-
 			const itemID = this._webMenuCategoryLIsArr[i].id;
 			const category = itemID.replace('web-menu-category-', '');
 			const categoryID = this._whiteSpaceToDash(category);
 			
 			// Check if the LI's parent, the category-body-{category-name}, exists
-			// Else create it
-			let categoryBodyDivID = document.querySelector(`#category-body-${categoryID}`);
-			if (categoryBodyDivID) {
-
+			if (document.querySelector(`#category-body-${categoryID}`)) {
 				const categoryUL = document.querySelector(`#category-list-${categoryID}`);
 				categoryUL.appendChild(this._webMenuCategoryLIsArr[i]);
-
 			} else {
-
 				// Create categories
-				categoryBodyDivID = document.createElement('li');
-				categoryBodyDivID.className = `category-body`;
-				categoryBodyDivID.id = `category-body-${categoryID}`;
-
-				const categoryNameH3ID = document.createElement('h3');
-				categoryNameH3ID.className = `category-name`;
-				categoryNameH3ID.id = `category-name-${categoryID}`;
-				categoryNameH3ID.innerText = `${this._capitalizeString(category)}`;
-
-				const categoryListULID = document.createElement('ul');
-				categoryListULID.className = `category-list`;
-				categoryListULID.id = `category-list-${categoryID}`;
-				categoryListULID.appendChild(this._webMenuCategoryLIsArr[i]);
-
-				categoryBodyDivID.appendChild(categoryNameH3ID);
-				categoryBodyDivID.appendChild(categoryListULID);
-				this._webMenuCategorized.appendChild(categoryBodyDivID);
-
+				this._createCatregories(category, categoryID);
+				const categoryUL = document.querySelector(`#category-list-${categoryID}`);
+				categoryUL.appendChild(this._webMenuCategoryLIsArr[i]);
 			}
 		}
 
