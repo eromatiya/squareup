@@ -42,6 +42,8 @@
   	justify-content: center;
   	max-height: 70vh;
 	overflow-y: auto;
+	scrollbar-color: var(--base-secondary-bg) var(--base-bg);
+ 	scrollbar-width: 10px;
 }
 
 #web-menu-list-container.web-menu-category-mode {
