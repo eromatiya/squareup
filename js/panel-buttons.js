@@ -17,7 +17,7 @@ class PanelButtons {
 		const buttonImage = document.createElement('div');
 		buttonImage.id = id;
 		buttonImage.className = className;
-		buttonImage.style.backgroundImage = background;
+		buttonImage.style.setProperty('background-image', background);
 		return buttonImage;
 	}
 

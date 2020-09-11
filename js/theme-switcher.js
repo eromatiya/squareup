@@ -54,8 +54,8 @@ class ThemeSwitcher {
 			themeLightDark = themeObject.darkHour;
 		}
 
-		this._buttonImageThemeSwitch.style.backgroundImage = `url('assets/theme-buttons/${themeIcon}.svg')`;
-		this._buttonImageThemeSwitch.style.backgroundSize = 'cover';
+		this._buttonImageThemeSwitch.style.setProperty('background-image', `url('assets/theme-buttons/${themeIcon}.svg')`);
+		this._buttonImageThemeSwitch.style.setProperty('background-size', 'cover');
 		this._applyThemeColors(themeLightHour, themeLightDark);
 	}
 

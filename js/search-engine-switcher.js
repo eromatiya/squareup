@@ -34,8 +34,8 @@ class SearchEngineSwitcher {
 		let searchEngineName = searchEngineObject.name;
 		let searchEngineIcon = searchEngineObject.icon;
 
-		this._buttonImageSearchEngine.style.backgroundImage = `url('assets/search-engines/${searchEngineIcon}.svg')`
-		this._buttonImageSearchEngine.style.backgroundSize = 'cover';
+		this._buttonImageSearchEngine.style.setProperty('background-image', `url('assets/search-engines/${searchEngineIcon}.svg')`);
+		this._buttonImageSearchEngine.style.setProperty('background-size', 'cover');
 		this._searchBox.placeholder = `Search with ${searchEngineName}`;
 	}
 
