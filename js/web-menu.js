@@ -102,7 +102,7 @@ class WebMenu {
 	// Create LI
 	_createItemCategoryLI(url, siteID, icon, site, categoryID, categoryUL) {
 		const li = document.createElement('li');
-		li.className = `web-menu-list-item web-menu-categorized`;
+		li.className = 'web-menu-list-item web-menu-categorized';
 		li.id = `web-menu-category-${categoryID}`;
 
 		// Generate web item/li child
@@ -130,16 +130,16 @@ class WebMenu {
 
 	_createCatregories(category, categoryID) {
 		const categoryBodyDivID = document.createElement('li');
-		categoryBodyDivID.className = `category-body`;
+		categoryBodyDivID.className = 'category-body';
 		categoryBodyDivID.id = `category-body-${categoryID}`;
 
 		const categoryNameH3ID = document.createElement('h3');
-		categoryNameH3ID.className = `category-name`;
+		categoryNameH3ID.className = 'category-name';
 		categoryNameH3ID.id = `category-name-${categoryID}`;
 		categoryNameH3ID.innerText = `${this._capitalizeString(category)}`;
 
 		const categoryUL = document.createElement('ul');
-		categoryUL.className = `category-list`;
+		categoryUL.className = 'category-list';
 		categoryUL.id = `category-list-${categoryID}`;
 
 		categoryBodyDivID.appendChild(categoryNameH3ID);
@@ -181,7 +181,7 @@ class WebMenu {
 			const categoryID = this._whiteSpaceToDash(category);
 
 			const li = document.createElement('li');
-			li.className = `web-menu-list-item web-menu-categorized`;
+			li.className = 'web-menu-list-item web-menu-categorized';
 			li.id = `web-menu-category-${categoryID}`;
 
 			// Generate web item/li child

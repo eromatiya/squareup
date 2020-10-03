@@ -34,7 +34,6 @@ li.suggestion {
 li button.suggestion-button {
 	background: transparent;
 	color: var(--font-color);
-	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
 	font-size: 12pt;
 	border: none;
 	width: auto;
