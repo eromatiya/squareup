@@ -52,7 +52,7 @@ class AutoSuggestion {
 			if (this._searchBoxValue) {
 				this._searchBox.value = this._searchBoxValue
 				this._searchBoxValue = null;
-			};
+			}
 			this._searchBox.focus();
 		}
 

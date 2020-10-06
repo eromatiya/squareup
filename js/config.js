@@ -1,5 +1,5 @@
 class Config {
-	constructor() {}
+	constructor() { }
 
 	getThemeMode() {
 		const themeModes = {
@@ -17,9 +17,19 @@ class Config {
 				lightHour: '7',
 				darkHour: '18'
 			}
-		}
+		};
 
 		return themeModes;
+	}
+
+	getFontFamily() {
+		const fontFamilies = {
+			'monospace': 'Fira Code Retina, Hack, Ubuntu Mono, Monaco, Lucida Console, monospace',
+			'sans-serif': 'Inter, SF Pro Text, Roboto, Open Sans, sans-serif',
+			'serif': 'serif'
+		};
+
+		return fontFamilies;
 	}
 
 	getQuickSearchData() {
@@ -34,7 +44,7 @@ class Config {
 				urlPrefix: 'https://unsplash.com/s/photos/'
 			},
 			'a/': {
-				urlPrefix: 'https://amazon.com/s?k='	
+				urlPrefix: 'https://amazon.com/s?k='
 			},
 			'e/': {
 				urlPrefix: 'https://ebay.com/sch/?_nkw='
@@ -43,10 +53,10 @@ class Config {
 				urlPrefix: 'https://youtube.com/results?search_query='
 			},
 			'n/': {
-				urlPrefix: 'https://nhentai.net/g/'	
+				urlPrefix: 'https://nhentai.net/g/'
 			},
 			'g/': {
-				urlPrefix: 'https://github.com/search?q='	
+				urlPrefix: 'https://github.com/search?q='
 			}
 		};
 

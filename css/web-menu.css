@@ -53,7 +53,6 @@
 #web-menu-searchbox {
 	background: var(--base-secondary-bg);
 	color: var(--font-color);
-	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
 	font-size: 12pt;
 	font-weight: 700;
 	text-align: center;
@@ -65,7 +64,6 @@
 }
 
 #web-menu-searchbox::placeholder {
-	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
 	font-size: 11pt;
 	font-weight: 700;
 }
@@ -146,7 +144,6 @@
 .web-item-name {
 	text-align: center;
 	font-size: 11pt;
-	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
 	font-weight: 400;
 	word-wrap: break-word;
 	color: var(--font-color);
@@ -176,7 +173,6 @@
 }
 
 .category-name {
-	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
 	font-weight: 700;
 	color: var(--font-color);
 	margin: 0 5px;

@@ -16,7 +16,6 @@
 }
 
 #clock {
-	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
 	font-weight: bold;
 	font-size: 88pt;
 	color: var(--clock-color);
@@ -33,7 +32,6 @@
 }
 
 #search-box {
-	font-family: 'Inter', 'SF Pro Text', 'Roboto', sans-serif;
 	background: var(--base-bg);
 	color: var(--font-color);
 	font-size: 14pt;

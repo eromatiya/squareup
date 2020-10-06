@@ -46,5 +46,5 @@ class SearchQuerySend {
 		}
 		
 		this._openURL(searchEngineSwitcher.getSearchEngineURLPrefix() + searchQuery);
-	};
+	}
 }
