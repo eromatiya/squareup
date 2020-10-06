@@ -260,6 +260,7 @@
 
 	.web-item {
 		width: auto;
+		margin: 5px 1.2rem;
 	}
 
 	.web-item:hover {
